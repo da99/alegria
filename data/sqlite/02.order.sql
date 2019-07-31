@@ -1,5 +1,5 @@
 
-CREATE TABLE main."order"(
+CREATE TABLE IF NOT EXISTS main."order"(
   id           INTEGER PRIMARY KEY,
   created_at   INTEGER,
   completed_at INTEGER,

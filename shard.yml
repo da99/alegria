@@ -6,6 +6,8 @@ dependencies:
     branch: master
   sqlite3:
     github: crystal-lang/crystal-sqlite3
+  kemal:
+    github: kemalcr/kemal
 development_dependencies:
   da_spec:
     git: file:///apps/da_spec

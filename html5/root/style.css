@@ -1,0 +1,31 @@
+
+blockquote {
+  text-align: left;
+}
+
+blockquote author {
+  display: block;
+  font-weight: bold;
+}
+
+ul {
+  display: block;
+}
+ul li {
+  display: block;
+  padding: 8px 10px;
+}
+ul li a:link {
+  padding:  8px;
+  color: purple;
+}
+ul li a:visited {
+  color: orange;
+}
+
+#main_nav a:link {
+  color: purple;
+}
+#main_nav ul li a:hover {
+  background: #cef542;
+}
