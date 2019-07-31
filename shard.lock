@@ -1,0 +1,18 @@
+version: 1.0
+shards:
+  da:
+    git: file:///apps/da
+    version: 5.2.3
+
+  da_spec:
+    git: file:///apps/da_spec
+    version: 1.0.2
+
+  db:
+    github: crystal-lang/crystal-db
+    version: 0.5.1
+
+  sqlite3:
+    github: crystal-lang/crystal-sqlite3
+    version: 0.12.0
+

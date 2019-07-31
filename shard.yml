@@ -1,0 +1,14 @@
+name: alegria
+version: 0.0.0
+dependencies:
+  da:
+    git: file:///apps/da
+    branch: master
+  sqlite3:
+    github: crystal-lang/crystal-sqlite3
+development_dependencies:
+  da_spec:
+    git: file:///apps/da_spec
+targets:
+  alegria:
+    main: bin/__.cr
