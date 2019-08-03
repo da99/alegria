@@ -6,7 +6,7 @@ shards:
 
   da_spec:
     git: file:///apps/da_spec
-    version: 1.0.2
+    version: 1.1.0
 
   db:
     github: crystal-lang/crystal-db

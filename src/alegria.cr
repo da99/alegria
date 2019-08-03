@@ -14,4 +14,3 @@ get "/css/:raw_name/style.css" do |env|
 end
 
 
-Kemal.run(port: 4567)
