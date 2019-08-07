@@ -17,21 +17,21 @@ for caption in $(find "$photo_dir" -maxdepth 2 -type f -iname "caption.txt") ; d
   photo_dir="$(dirname "$caption")"
   caption_content="$(cat "$caption")"
   (
-    echo "%{c}$caption_content" | lemonbar -p -n "random_photo_caption" \
+    echo "%{c}$caption_content" | $HOME/progs/lemonbar-xft/lemonbar -p -n "random_photo_caption" \
       -f "helv:size=16:antialias=true" \
       -g "1920x40+0+0" \
       -B "#132492" \
       -F "#ffffff"
   ) &
+  lemon_pid="$!"
 
-  for photo in $(find "$photo_dir" -maxdepth 1 -type f | grep -Pi '\.(jpg|jpeg|png)$'); do
-    feh --fullscreen --borderless "$photo" &
+  for photo in $(find "$photo_dir" -maxdepth 1 -type f | grep -Pi '\.(jpg|jpeg|png)$' | sort); do
+    feh --scale-down --auto-zoom -g "1900x1080" --borderless "$photo" &
     feh_pid="$!"
-    (sleep 5; kill -INT "$feh_pid" ) &
+    (sleep 6; kill -INT "$feh_pid" || :) &
     sleep 4
-    echo "exiting"
-    exit 0
   done
+  (sleep 2; kill -INT "$lemon_pid" || :) &
   # sleep 5
   # pkill -f random_photo_caption || :
   # kill -INT "$feh_pid" || :
