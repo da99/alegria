@@ -3,6 +3,21 @@
 #
 set -u -e -o pipefail
 
+cd $HOME/apps/alegria/wall_display
+feh \
+  -K captions \
+  -r $PWD  \
+  -C /usr/share/fonts/truetype \
+  -e noto/29           \
+  --draw-tinted             \
+  -D 5                       \
+  --fullscreen                \
+  -x                           \
+  --scale-down                  \
+  --auto-zoom
+exit 0
+
+
 photo_dir="$(dirname "$(realpath "$0")")"
 
 function end_all {
