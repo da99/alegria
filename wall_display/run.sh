@@ -14,7 +14,9 @@ feh \
   --fullscreen                \
   -x                           \
   --scale-down                  \
-  --auto-zoom
+  --auto-zoom || :
+mpv --fullscreen $HOME/Videos
+
 exit 0
 
 
