@@ -7,8 +7,8 @@ cd $HOME/apps/alegria/wall_display
 feh \
   -K captions \
   -r $PWD  \
-  -C /usr/share/fonts/truetype \
-  -e noto/29           \
+  -C /usr/share/fonts/truetype/liberation2 \
+  -e LiberationSerif-Regular/32           \
   --draw-tinted             \
   -D 5                       \
   --fullscreen                \
