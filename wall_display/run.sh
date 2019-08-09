@@ -10,12 +10,13 @@ feh \
   -C /usr/share/fonts/truetype/liberation2 \
   -e LiberationSerif-Regular/32           \
   --draw-tinted             \
-  -D 5                       \
+  -D 10                      \
   --fullscreen                \
   -x                           \
   --scale-down                  \
   --auto-zoom || :
-mpv --fullscreen $HOME/Videos
+cd $HOME/Videos
+mpv --fullscreen main.m3u
 
 exit 0
 
