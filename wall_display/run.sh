@@ -4,9 +4,26 @@
 set -u -e -o pipefail
 
 cd $HOME/apps/alegria/wall_display
+for x in $(find ./special -type f -iname "*.jpg" -or -iname "*.png") ; do
+  feh --bg-fill  $x
+  caption="$(cat $(dirname "$x")/captions/$(basename "$x").txt || :)"
+  if ! test -z "$caption" ; then
+    ( echo "%{c}$caption" | $HOME/progs/lemonbar-xft/lemonbar -p -n "random_photo_caption" \
+      -f "helv:size=16:antialias=true" \
+      -g "1920x40+0+0" \
+      -B "#132492" \
+      -F "#ffffff"
+          ) &
+    sleep 10
+    pkill -INT -f random_photo_caption
+  fi
+done
+exit 0
+
+(
 feh \
   -K captions \
-  -r $PWD  \
+  -r $PWD/special  \
   -C /usr/share/fonts/truetype/liberation2 \
   -e LiberationSerif-Regular/32           \
   --draw-tinted             \
@@ -15,8 +32,14 @@ feh \
   -x                           \
   --scale-down                  \
   --auto-zoom || :
+  ) &
+  sleep 10m
+  (
 cd $HOME/Videos
 mpv --fullscreen main.m3u
+) &
+killall feh || :
+
 
 exit 0
 
