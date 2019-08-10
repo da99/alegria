@@ -10,7 +10,7 @@ feh \
   -C /usr/share/fonts/truetype/liberation2 \
   -e LiberationSerif-Regular/32           \
   --draw-tinted             \
-  -D 10                      \
+  -D 15                      \
   --fullscreen                \
   -x                           \
   --scale-down                  \
