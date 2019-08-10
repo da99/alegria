@@ -3,6 +3,10 @@
 #
 set -u -e -o pipefail
 
+for x in $(wmctrl -l | cut -d' ' -f1); do
+  xdotool windowminimize "$x" || :
+done
+
 cd $HOME/apps/alegria/wall_display
 for x in $(find ./special -type f -iname "*.jpg" -or -iname "*.png") ; do
   feh --bg-fill  $x
