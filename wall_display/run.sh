@@ -3,13 +3,35 @@
 #
 set -u -e -o pipefail
 
+killall lemonbar || :
+killall mpv || :
 for x in $(wmctrl -l | cut -d' ' -f1); do
   xdotool windowminimize "$x" || :
 done
 
 cd $HOME/apps/alegria/wall_display
+
+(
+echo "%{c}Follow us on Facebook. We're also on Instagram: @AlegriaGrillKaty" | $HOME/progs/lemonbar-xft/lemonbar -p -n "random_photo_caption" \
+	-f "helv:size=28:antialias=true" \
+	-g "1920x120+0+0" \
+	-B "#132492" \
+	-F "#ffffff" || :
+) &
+
+while ! test -f /tmp/quit ; do
 for x in $(find ./special -type f -iname "*.jpg" -or -iname "*.png") ; do
-  feh --bg-fill  $x
+  pcmanfm --set-wallpaper  $x
+  sleep 10
+done
+case $(date +"%M") in
+  5|20|25|35|40|45|50|58)
+	mpv --fullscreen $HOME/Videos/00-alegria_comm.mp4
+	;;
+esac
+done
+
+for x in $(find ./special -type f -iname "*.jpg" -or -iname "*.png") ; do
   caption="$(cat $(dirname "$x")/captions/$(basename "$x").txt || :)"
   if ! test -z "$caption" ; then
     ( echo "%{c}$caption" | $HOME/progs/lemonbar-xft/lemonbar -p -n "random_photo_caption" \
