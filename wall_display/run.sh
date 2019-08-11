@@ -5,6 +5,9 @@ set -u -e -o pipefail
 
 killall lemonbar || :
 killall mpv || :
+killall smplayer || :
+killall vlc || :
+
 for x in $(wmctrl -l | cut -d' ' -f1); do
   xdotool windowminimize "$x" || :
 done
@@ -14,14 +17,15 @@ cd $HOME/apps/alegria/wall_display
 (
 echo "%{c}Follow us on Facebook. We're also on Instagram: @AlegriaGrillKaty" | $HOME/progs/lemonbar-xft/lemonbar -p -n "random_photo_caption" \
 	-f "helv:size=28:antialias=true" \
-	-g "1920x120+0+0" \
+	-g "1920x80+0+0" \
 	-B "#132492" \
 	-F "#ffffff" || :
 ) &
 
+	set -x
 while ! test -f /tmp/quit ; do
 for x in $(find ./special -type f -iname "*.jpg" -or -iname "*.png") ; do
-  pcmanfm --set-wallpaper  $x
+  pcmanfm --set-wallpaper $PWD/$x --wallpaper-mode=crop
   sleep 10
 done
 case $(date +"%M") in
