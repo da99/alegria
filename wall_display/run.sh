@@ -21,6 +21,14 @@ echo "%{c}Follow us on Facebook. We're also on Instagram: @AlegriaGrillKaty" | $
 	-B "#132492" \
 	-F "#ffffff" || :
 ) &
+(
+sh/time.headline.sh | $HOME/progs/lemonbar-xft/lemonbar -p -n "random_photo_caption" \
+	-f "helv:size=28:antialias=true" \
+	-B "#FF5E00" \
+	-g "1920x80+0+0" \
+	-F "#000000" \
+  -b || :
+) &
 
 	set -x
 while ! test -f /tmp/quit ; do
