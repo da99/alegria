@@ -4,36 +4,38 @@
 set -u -e -o pipefail
 
 
-day_name="$(date +"%a")"
-hour="$(date +"%I")"
-min="$(date +"%M")"
+while true ; do
 
-public_time="$(date +"%I:%M %p")"
+  day_name="$(date +"%a")"
+  hour="$(date +"%I")"
+  min="$(date +"%M")"
 
-case $day_name in
-  Sun)
-    closing_hour="4"
-    ;;
-  Mon)
-    closing_hour="3"
-    ;;
-  Fri|Sat)
-    closing_hour="9"
-    ;;
-  *)
-    closing_hour="8"
-    ;;
-esac
+  public_time="$(date +"%I:%M %p")"
 
-if test $min -gt 30 && test $min -lt 59 && test $((closing_hour - 1)) -eq $hour ; then
-  echo "%{c}$public_time $day_name (We close in $((60 - $min)) mins)"
-  exit 0
-fi
+  case $day_name in
+    Sun)
+      closing_hour="4"
+      ;;
+    Mon)
+      closing_hour="3"
+      ;;
+    Fri|Sat)
+      closing_hour="9"
+      ;;
+    *)
+      closing_hour="8"
+      ;;
+  esac
 
-if test $closing_hour -eq $hour || ( test $((closing_hour - 1)) -eq $hour && test "$min" -eq 59) ; then
-  echo "%{c}We are closed. To-go orders only."
-  exit 0
-fi
+  if test $min -gt 30 && test $min -lt 59 && test $((closing_hour - 1)) -eq $hour ; then
+    echo "%{c}$public_time $day_name (We close in $((60 - $min)) mins)"
+  else
+    if test $closing_hour -eq $hour || ( test $((closing_hour - 1)) -eq $hour && test "$min" -eq 59) ; then
+      echo "%{c}We are closed. To-go orders only."
+    else
+      echo "%{c}$public_time $day_name (We close at $closing_hour PM)"
+    fi
+  fi
 
-echo "%{c}$public_time $day_name (We close at $closing_hour PM)"
-
+  sleep 2
+done
