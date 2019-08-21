@@ -35,7 +35,7 @@ while true ; do
   if test $hour24 -lt 11; then
     ( echo "%{c}Alegria has not opened yet." | ./bar.sh -n middle_bar_caption -g "1920x80+0+$((1080/2 - 40))" -B "#AC0000" -F "#ffffff" ) &
     sleep $(( ((11 - $hour24) * 60) + ((60 - $min) * 60)  )) || sleep 1
-    pkill -f middle_bar_caption
+    pkill -f middle_bar_caption || :
     continue
   fi
 
@@ -52,7 +52,7 @@ while true ; do
   if ! test -z $is_closed ; then
     ( echo "%{c}Alegria is closed. No more orders." | ./bar.sh -n middle_bar_caption -g "1920x80+0+$((1080/2 - 40))" -B "#AC0000" -F "#ffffff" ) &
     sleep $((60 * 60))
-    pkill -f middle_bar_caption
+    pkill -f middle_bar_caption || :
   fi
 
   sleep $((60 - $second)) || sleep 1
