@@ -1,0 +1,49 @@
+#!/usr/bin/env zsh
+#
+#
+set -u -e -o pipefail -x
+
+cd $(dirname "$(realpath "$0")")
+
+while true ; do
+
+  day_name="$(date +"%a")"
+  hour="$(date +"%I")"
+  min="$(date +"%M")"
+  second="$(date +"%S")"
+
+  public_time="$(date +"%I:%M %p")"
+
+  case $day_name in
+    Sun)
+      closing_hour="4"
+      ;;
+    Mon)
+      closing_hour="3"
+      ;;
+    Fri|Sat)
+      closing_hour="9"
+      ;;
+    *)
+      closing_hour="8"
+      ;;
+  esac
+
+  is_closed=""
+
+  if test $min -eq 59 && test $((closing_hour - 1)) -eq $hour ; then
+    is_closed="yes"
+  fi
+
+  if test $hour -ge $closing_hour ; then
+    is_closed="yes"
+  fi
+
+  if ! test -z $is_closed ; then
+    ( echo "%{c}Alegria is closed. No more orders." | ./bar.sh -n middle_bar_caption -g "1920x80+0+$((1080/2 - 40))" -B "#AC0000" -F "#ffffff" ) &
+    sleep $((60 * 60))
+    pkill -f middle_bar_caption
+  fi
+
+  sleep $((60 - $second)) || sleep 1
+done
