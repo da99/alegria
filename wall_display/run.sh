@@ -4,6 +4,7 @@
 set -u -e -o pipefail
 
 killall lemonbar || :
+xset s 6000 6000 6000 || :
 killall mpv || :
 killall smplayer || :
 killall vlc || :
@@ -14,6 +15,7 @@ done
 
 cd $HOME/apps/alegria/wall_display
 
+	set -x
 (
 echo "%{c}Follow us on Facebook. We're also on Instagram: @AlegriaGrillKaty" | $HOME/progs/lemonbar-xft/lemonbar -p -n "random_photo_caption" \
 	-f "helv:size=28:antialias=true" \
@@ -22,17 +24,14 @@ echo "%{c}Follow us on Facebook. We're also on Instagram: @AlegriaGrillKaty" | $
 	-F "#ffffff" || :
 ) &
 
-	set -x
 while ! test -f /tmp/quit ; do
+sleep 1
+	mpv --fullscreen $HOME/Videos/ || :
 for x in $(find ./special -type f -iname "*.jpg" -or -iname "*.png") ; do
   pcmanfm --set-wallpaper $PWD/$x --wallpaper-mode=crop
   sleep 10
 done
-case $(date +"%M") in
-  5|20|25|35|40|45|50|58)
-	mpv --fullscreen $HOME/Videos/00-alegria_comm.mp4
-	;;
-esac
+sleep 10
 done
 
 for x in $(find ./special -type f -iname "*.jpg" -or -iname "*.png") ; do
