@@ -9,6 +9,7 @@ while true ; do
 
   day_name="$(date +"%a")"
   hour="$(date +"%I")"
+  hour24="$(date +"%H")"
   min="$(date +"%M")"
   second="$(date +"%S")"
 
@@ -28,14 +29,21 @@ while true ; do
       closing_hour="8"
       ;;
   esac
+  closing_hour24="$((12 + $closing_hour))"
 
   is_closed=""
 
-  if test $min -eq 59 && test $((closing_hour - 1)) -eq $hour ; then
+  if test $hour24 -lt 11; then
+    ( echo "%{c}Alegria has not opened yet." | ./bar.sh -n middle_bar_caption -g "1920x80+0+$((1080/2 - 40))" -B "#AC0000" -F "#ffffff" ) &
+    sleep $(( ((11 - $hour24) * 60) + ((60 - $min) * 60)  )) || sleep 1
+    continue
+  fi
+
+  if test $min -eq 59 && test $((closing_hour24 - 1)) -eq $hour24 ; then
     is_closed="yes"
   fi
 
-  if test $hour -ge $closing_hour ; then
+  if test $hour24 -ge $closing_hour24 || test $hour24 -lt 11; then
     is_closed="yes"
   fi
 
@@ -46,4 +54,4 @@ while true ; do
   fi
 
   sleep $((60 - $second)) || sleep 1
-done
+done # while
