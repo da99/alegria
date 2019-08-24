@@ -30,6 +30,9 @@ black="#000000"
 orange="#FF5E00"
 
 
+# Movies
+( sh/wall.movies.sh || : ) &
+
 # TOP CAPTION:
 ( echo $top_msg | sh/bar.sh -n "top_photo_caption" -B $blue -F $white || : ) &
 
@@ -62,11 +65,6 @@ while true ; do
     sleep 20
   done
 
-  case $(date +"%M") in
-    5|15|25|35|45|55)
-      mpv --fullscreen $HOME/Videos/00-alegria_comm.mp4
-      ;;
-  esac
 done # while
 
 
