@@ -1,12 +1,17 @@
 #!/usr/bin/env zsh
 #
 #
-set -u -e -o pipefail -x
+set -u -e -o pipefail
 
-cd $(dirname "$(realpath "$0")")/..
+echo -n "Wall display is starting. Please wait"
+sleep 1; echo -n .
+sleep 1; echo -n .
+sleep 1; echo -n .
+sleep 1; echo .
+
+
+cd /home/pi/apps/alegria
 git pull || :
-
-cd $(dirname "$(realpath "$0")")
 
 
 killall lemonbar || :
@@ -28,18 +33,16 @@ orange="#FF5E00"
 set -x
 
 # TOP CAPTION:
-( echo $top_msg | ./bar.sh -n "top_photo_caption" -B $blue -F $white || : ) &
+( echo $top_msg | sh/bar.sh -n "top_photo_caption" -B $blue -F $white || : ) &
 
 # Middle Caption:
-( ./middle.caption.sh || : ) &
+( sh/middle.caption.sh || : ) &
 
 # BOTTOM CAPTION:
-( ./bottom.caption.sh | ./bar.sh -n "bottom_photo_caption" -B $blue -F $white -b || : ) &
+( sh/bottom.caption.sh | sh/bar.sh -n "bottom_photo_caption" -B $blue -F $white -b || : ) &
 
 
 # Photo Loop:
-set -x
-cd ..
 while ! test -f /tmp/quit ; do
   for x in $(find wall_display/special -type f -iname "*.jpg" -or -iname "*.png") ; do
     pcmanfm --set-wallpaper $PWD/$x --wallpaper-mode=crop
