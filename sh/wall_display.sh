@@ -43,6 +43,7 @@ orange="#FF5E00"
 # Photo Loop:
 while true ; do
   seconds="$(date +"%S")"
+  minute="$(date +"%M")"
 
   if sh/is.opening ; then
     pcmanfm --set-wallpaper $PWD/humor/weekend.jpg --wallpaper-mode=crop
@@ -51,7 +52,7 @@ while true ; do
   fi
 
   if sh/is.closed ; then
-    pcmanfm --set-wallpaper $PWD/humor/weekend.jpg --wallpaper-mode=crop
+    pcmanfm --set-wallpaper $PWD/humor/closed.jpg --wallpaper-mode=crop
     sleep $(( 60 - $seconds )) || sleep 5
     continue
   fi
