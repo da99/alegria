@@ -45,7 +45,7 @@ while true ; do
   seconds="$(date +"%S")"
 
   if sh/is.opening ; then
-    pcmanfm --set-wallpaper $PWD/humor/flute.jpg --wallpaper-mode=crop
+    pcmanfm --set-wallpaper $PWD/humor/weekend.jpg --wallpaper-mode=crop
     sleep $(( 60 - $seconds )) || sleep 5
     continue
   fi
