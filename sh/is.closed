@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+#
+#
+#
+set -u -e
+
+if test $(hostname) = "v01" ; then
+  set -x
+fi
+
+cd $HOME/apps/alegria
+
+now_24="$(date +"%H")"
+closing_24=$(sh/what.hour24.closing)
+if sh/is.opening || test $now_24 -ge $closing_24 ; then
+  exit 0
+fi
+
+exit 1

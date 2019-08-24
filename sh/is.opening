@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+#
+#
+set -u -e
+
+if test $(hostname) = "v01" ; then
+  set -x
+fi
+
+now_24="$(date +"%H")"
+
+if test $now_24 -lt 11 ; then
+  exit 0
+fi
+exit 1
+
+
