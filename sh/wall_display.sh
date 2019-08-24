@@ -3,16 +3,16 @@
 #
 set -u -e -o pipefail -x
 
-cd $(dirname "$(realpath "$0")")/..
-git pull || :
-
-cd $(dirname "$(realpath "$0")")
-
-
 killall lemonbar || :
 killall mpv || :
 killall smplayer || :
 killall vlc || :
+
+rm -f /tmp/quit
+
+
+cd $HOME/apps/alegria
+git pull || :
 
 # Minimize any windows.
 for x in $(wmctrl -l | cut -d' ' -f1); do
@@ -25,7 +25,6 @@ white="#ffffff"
 black="#000000"
 orange="#FF5E00"
 
-set -x
 
 # TOP CAPTION:
 ( echo $top_msg | ./bar.sh -n "top_photo_caption" -B $blue -F $white || : ) &
@@ -38,9 +37,21 @@ set -x
 
 
 # Photo Loop:
-set -x
-cd ..
-while ! test -f /tmp/quit ; do
+while true ; do
+  seconds="$(date +"%S")"
+
+  if sh/is.opening ; then
+    pcmanfm --set-wallpaper $PWD/humor/flute.jpg --wallpaper-mode=crop
+    sleep $(( 60 - $seconds )) || sleep 5
+    continue
+  fi
+
+  if sh/is.closed ; then
+    pcmanfm --set-wallpaper $PWD/humor/weekend.jpg --wallpaper-mode=crop
+    sleep $(( 60 - $seconds )) || sleep 5
+    continue
+  fi
+
   for x in $(find wall_display/special -type f -iname "*.jpg" -or -iname "*.png") ; do
     pcmanfm --set-wallpaper $PWD/$x --wallpaper-mode=crop
     sleep 30
