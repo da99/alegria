@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+#
+#
+set -u -e
+
+if test $(hostname) = "v01" ; then
+  set -x
+fi
+
+second="$(date +"%S")"
+sleep $(( 60 - $second )) || sleep 5
