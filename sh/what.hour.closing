@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+#
+#
+set -u -e
+
+day_name="$(date +"%a")"
+hour="$(date +"%I")"
+hour24="$(date +"%H")"
+min="$(date +"%M")"
+seconds="$(date +"%S")"
+
+public_time="$(date +"%I:%M %p")"
+
+case $day_name in
+  Sun)
+    echo 4
+    ;;
+  Mon)
+    echo 3
+    ;;
+  Fri|Sat)
+    echo 9
+    ;;
+  *)
+    echo 8
+    ;;
+esac

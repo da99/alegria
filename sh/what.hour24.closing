@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+#
+#
+set -u -e
+
+cd $HOME/apps/alegria
+
+hour12=$(sh/what.hour.closing)
+
+echo $((12 + $hour12))
