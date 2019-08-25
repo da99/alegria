@@ -16,6 +16,15 @@ while true ; do
     continue
   fi
 
+  if sh/is.closing.soon ; then
+    ( echo "%{c}Alegria is closing soon." | ./bar.sh -n middle_bar_caption -g "1920x80+0+$((1080/2 - 40))" -B "#FFCD30" -F "#AC0000" ) &
+    while ! sh/is.closing.soon ; do
+      sh/sleep.minute
+    done
+    pkill -f middle_bar_caption || :
+    continue
+  fi
+
   if sh/is.closed ; then
     ( echo "%{c}Alegria is closed. No more orders." | ./bar.sh -n middle_bar_caption -g "1920x80+0+$((1080/2 - 40))" -B "#AC0000" -F "#ffffff" ) &
     while sh/is.closed ; do
