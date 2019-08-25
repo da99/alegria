@@ -49,14 +49,13 @@ while true ; do
   minute="$(date +"%M")"
 
   if sh/is.opening ; then
-    pcmanfm --set-wallpaper $PWD/humor/weekend.jpg --wallpaper-mode=crop
-    sleep $(( 60 - $seconds )) || sleep 5
+    sh/sleep.minute
     continue
   fi
 
   if sh/is.closed ; then
     pcmanfm --set-wallpaper $PWD/humor/closed.jpg --wallpaper-mode=crop
-    sleep $(( 60 - $seconds )) || sleep 5
+    sh/sleep.minute
     continue
   fi
 
