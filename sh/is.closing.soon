@@ -14,11 +14,9 @@ now_24="$(date +"%H")"
 closing_24=$(sh/what.hour24.closing)
 minute="$(date +"%M")"
 
-if ! test "$now_24" -eq "$closing_24" ; then
-  exit 1
+if test "$now_24" -eq $(( $closing_24 - 1)) && test "$minute" -gt 27 ; then
+  exit 0
 fi
 
-if test "$minute" -lt 28 ; then
-  exit 1
-fi
+exit 1
 
