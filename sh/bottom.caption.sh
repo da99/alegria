@@ -3,6 +3,7 @@
 #
 set -u -e -o pipefail
 
+cd $HOME/apps/alegria
 
 while true ; do
 
@@ -43,5 +44,5 @@ while true ; do
     fi
   fi
 
-  sleep $((60 - $seconds)) || sleep 1
+  sh/sleep.minute
 done
