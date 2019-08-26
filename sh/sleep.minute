@@ -7,5 +7,8 @@ if test $(hostname) = "v01" ; then
   set -x
 fi
 
-second="$(date +"%S")"
+second="$(date +"%S"  | sed 's/^0*//')"
+if test -z "$second" ; then
+  second="1"
+fi
 sleep $(( 60 - $second )) || sleep 5
