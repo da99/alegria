@@ -17,7 +17,13 @@ while true ; do
   fi
 
   if sh/is.closing.soon ; then
-    ( echo "%{c}Alegria is closing soon." | sh/bar.sh -n middle_bar_caption -g "1920x80+0+$((1080/2 - 40))" -B "#FFCD30" -F "#AC0000" ) &
+    ( echo "%{c}Alegria is closing soon." | sh/bar.sh \
+      -f "helv:size=40:weight=bold:antialias=true" \
+      -n middle_bar_caption \
+      -g "1920x90+0+$((1080/2 - 40))" \
+      -B "#FFCD30" \
+      -F "#AC0000"
+    ) &
     while sh/is.closing.soon ; do
       sh/sleep.minute
     done
