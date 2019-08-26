@@ -40,7 +40,7 @@ orange="#FF5E00"
 ( sh/middle.caption.sh || : ) &
 
 # BOTTOM CAPTION:
-( sh/bottom.caption.sh | sh/bar.sh -n "bottom_photo_caption" -B $blue -F $white -b || : ) &
+( sh/bottom.caption.sh | sh/bar.sh -f "helv:size=34:weight=bold:antialias=true" -n "bottom_photo_caption" -B $blue -F $white -b || : ) &
 
 
 # Photo Loop:
