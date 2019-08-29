@@ -4,11 +4,12 @@
 #
 set -u -e
 
-if test $(hostname) = "v01" ; then
-  set -x
-fi
 
 cd $HOME/apps/alegria
+
+if sh/is.on.pi ; then
+  set -x
+fi
 
 now_24="$(date +"%H")"
 closing_24=$(sh/what.hour24.closing)

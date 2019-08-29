@@ -3,10 +3,6 @@
 #
 set -u -e
 
-if test $(hostname) = "v01" ; then
-  set -x
-fi
-
 cd $HOME/apps/alegria
 
 ! sh/is.closed

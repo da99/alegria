@@ -25,6 +25,10 @@ white="#ffffff"
 black="#000000"
 orange="#FF5E00"
 
+# Auto-update
+#
+( sh/auto_update.sh || : ) &
+
 # Movies
 ( sh/wall.movies.sh || : ) &
 
