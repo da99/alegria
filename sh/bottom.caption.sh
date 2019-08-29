@@ -5,7 +5,7 @@ set -u -e -o pipefail
 
 cd $HOME/apps/alegria
 
-while true ; do
+while sh/is.running ; do
 
   day_name="$(date +"%a")"
   hour="$(date +"%I")"

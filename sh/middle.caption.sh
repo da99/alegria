@@ -5,10 +5,13 @@ set -u -e -o pipefail -x
 
 cd $HOME/apps/alegria
 
-while true ; do
+while sh/is.running ; do
 
   if sh/is.opening ; then
-    ( echo "%{c}Alegria has not opened yet." | sh/bar.sh -n middle_bar_caption -g "1920x80+0+$((1080/2 - 40))" -B "#AC0000" -F "#ffffff" ) &
+    ( echo "%{c}%{T2}Alegria has not opened yet." | sh/bar.sh \
+      -n middle_bar_caption \
+      -g "1920x150+0+$((1080/2 - 75))" \
+      -B "#AC0000" -F "#ffffff" ) &
     while sh/is.opening ; do
       sh/sleep.minute
     done
@@ -17,10 +20,9 @@ while true ; do
   fi
 
   if sh/is.closing.soon ; then
-    ( echo "%{c}Alegria is closing soon." | sh/bar.sh \
-      -f "helv:size=40:weight=bold:antialias=true" \
+    ( echo "%{c}%{T2}Alegria is closing soon." | sh/bar.sh \
       -n middle_bar_caption \
-      -g "1920x90+0+$((1080/2 - 40))" \
+      -g "1920x150+0+$((1080/2 - 75))" \
       -B "#FFCD30" \
       -F "#AC0000"
     ) &

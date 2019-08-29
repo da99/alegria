@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+#
+#
+set -u -e
+
+if ! test "$USER" = "pi" ; then
+  set -x
+fi
+test -n "$WALL_PID" && kill -0 $WALL_PID
