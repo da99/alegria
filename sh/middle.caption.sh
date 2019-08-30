@@ -22,7 +22,6 @@ while sh/is.running ; do
   if sh/is.closing.soon ; then
     ( echo "%{c}%{T2}Alegria is closing soon." | sh/bar.sh \
       -n middle_bar_caption \
-      -g "1920x150+0+$((1080/2 - 75))" \
       -B "#FFCD30" \
       -F "#AC0000"
     ) &
