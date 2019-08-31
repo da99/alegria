@@ -47,8 +47,12 @@ while sh/is.running ; do
   seconds="$(date +"%S")"
   minute="$(date +"%M")"
 
-  if ! sh/is.open ; then
+  if sh/is.closed ; then
+    if sh/is.opening ; then
+    pcmanfm --set-wallpaper $PWD/wall_display/humor/joy_tota.jpg --wallpaper-mode=crop
+    else
     pcmanfm --set-wallpaper $PWD/humor/closed.jpg --wallpaper-mode=crop
+    fi
     sh/sleep.minute
     continue
   fi

@@ -33,7 +33,7 @@ while sh/is.running ; do
   fi
 
   if sh/is.closed ; then
-    ( echo "%{c}Alegria is closed. No more orders." | sh/bar.sh -n middle_bar_caption -g "1920x80+0+$((1080/2 - 40))" -B "#AC0000" -F "#ffffff" ) &
+    ( echo "%{c}%{T2}Alegria is closed. No more orders." | sh/bar.sh -n middle_bar_caption -g "1920x80+0+$((1080/2 - 40))" -B "#AC0000" -F "#ffffff" ) &
     while sh/is.closed ; do
       sh/sleep.minute
     done
