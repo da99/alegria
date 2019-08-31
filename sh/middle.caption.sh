@@ -34,7 +34,7 @@ while sh/is.running ; do
 
   if sh/is.closed ; then
     ( echo "%{c}%{T2}Alegria is closed. No more orders." | sh/bar.sh -n middle_bar_caption -g "1920x120+0+$((1080/2 - 60))" -B "#AC0000" -F "#ffffff" ) &
-    while sh/is.closed ; do
+    while sh/is.closed && ! sh/is.opening ; do
       sh/sleep.minute
     done
     pkill -f middle_bar_caption || :
