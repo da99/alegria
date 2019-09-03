@@ -31,15 +31,15 @@ while sh/is.running ; do
   esac
 
   if test "$hour24" -eq 10 ; then
-    echo "%{c}%{T3}$public_time $day_name ($((60 - $min)) minutes to opening.)"
+    echo "%{c}%{T2}$public_time $day_name ($((60 - $min)) minutes to opening.)"
   else
     if test "$hour24" -lt 11 ; then
-      echo "%{c}%{T3}$public_time $day_name (We are still closed.)"
+      echo "%{c}%{T2}$public_time $day_name (We are still closed.)"
     else
       if test $min -gt 30 && test $min -lt 59 && test $((closing_hour - 1)) -eq $hour ; then
-        echo "%{c}%{T3}$public_time $day_name (We close in $((60 - $min)) mins)"
+        echo "%{c}%{T2}$public_time $day_name (We close in $((60 - $min)) mins)"
       else
-        echo "%{c}%{T3}$public_time $day_name (We close at $closing_hour PM)"
+        echo "%{c}%{T2}$public_time $day_name (We close at $closing_hour PM)"
       fi
     fi
   fi
