@@ -20,11 +20,13 @@ for x in $(wmctrl -l | cut -d' ' -f1); do
 done
 
 
-# Auto-update
-#
+# Auto-update:
 ( sh/auto_update.sh || : ) &
 
-# Movies
+# Get the mouse out of the way:
+( sh/mouse.move.sh || : ) &
+
+# Movies:
 ( sh/wall.movies.sh || : ) &
 
 # TOP CAPTION:
@@ -46,17 +48,26 @@ while sh/is.running ; do
 
   if sh/is.closed ; then
     if sh/is.opening ; then
-    pcmanfm --set-wallpaper $PWD/wall_display/humor/joy_tota.jpg --wallpaper-mode=crop
+      pcmanfm --set-wallpaper $PWD/wall_display/humor/joy_tota.jpg --wallpaper-mode=crop
     else
-    pcmanfm --set-wallpaper $PWD/humor/closed.jpg --wallpaper-mode=crop
+      pcmanfm --set-wallpaper $PWD/humor/closed.jpg --wallpaper-mode=crop
     fi
+    sh/sleep.minute
+    continue
+  fi
+
+  if sh/is.closing.soon ; then
     sh/sleep.minute
     continue
   fi
 
   for x in $(find wall_display/special -type f -iname "*.jpg" -or -iname "*.png" | sort) ; do
     pcmanfm --set-wallpaper $PWD/$x --wallpaper-mode=crop
-    sleep 20
+    if sh/is.closing.soon ; then
+      continue
+    else
+      sleep 10
+    fi
   done
 
 done # while
