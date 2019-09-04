@@ -64,8 +64,8 @@ while sh/is.running ; do
     continue
   fi
 
-  for x in $(find wall_display/special -type f -iname "*.jpg" -or -iname "*.png" | sort) ; do
-    pcmanfm --set-wallpaper $PWD/$x --wallpaper-mode=crop
+  for x in $(find wall_display/special -type f -iname "*.jpg" -or -iname "*.png" | shuf) ; do
+    pcmanfm --set-wallpaper "$PWD/$x" --wallpaper-mode=crop || :
     if sh/is.closing.soon ; then
       continue
     else
