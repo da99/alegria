@@ -25,11 +25,13 @@ white="#ffffff"
 black="#000000"
 orange="#FF5E00"
 
-# Auto-update
-#
+# Auto-update:
 ( sh/auto_update.sh || : ) &
 
-# Movies
+# Get the mouse out of the way:
+( sh/mouse.move.sh || : ) &
+
+# Movies:
 ( sh/wall.movies.sh || : ) &
 
 # TOP CAPTION:
