@@ -19,11 +19,6 @@ for x in $(wmctrl -l | cut -d' ' -f1); do
   xdotool windowminimize "$x" || :
 done
 
-top_msg="%{c}Follow us on Facebook: AlegriaGrill. We're also on Instagram: @AlegriaGrillKaty"
-blue="#132492"
-white="#ffffff"
-black="#000000"
-orange="#FF5E00"
 
 # Auto-update:
 ( sh/auto_update.sh || : ) &
@@ -41,6 +36,8 @@ orange="#FF5E00"
 ( sh/middle.caption.sh || : ) &
 
 # BOTTOM CAPTION:
+blue="#132492"
+white="#ffffff"
 ( sh/bottom.caption.sh | sh/bar.sh -f "helv:size=34:weight=bold:antialias=true" -n "bottom_photo_caption" -B $blue -F $white -b || : ) &
 
 
