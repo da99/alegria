@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+#
+#
+set -u -e -o pipefail
+
+dir="$1"
+
+file_name="$(ls -1 "$dir" | shuf | tail -n 1)"
+
+echo "$dir/$file_name" | tr --squeeze-repeats "/"
+
