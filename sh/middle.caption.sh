@@ -27,7 +27,7 @@ while sh/is.running ; do
       -F "#AC0000"
     ) &
     while sh/is.closing.soon ; do
-      pcmanfm --set-wallpaper $PWD/wall_display/humor/closing_soon.jpg --wallpaper-mode=crop
+      pcmanfm --set-wallpaper $PWD/wall_display/closing/closing_soon.jpg --wallpaper-mode=crop
       sh/sleep.minute
     done
     pkill -f middle_bar_caption || :
