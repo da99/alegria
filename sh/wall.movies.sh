@@ -14,10 +14,11 @@ while sh/is.running ; do
   min="$(date +"%M")"
   case "$min" in
     "00"|"15"|"30"|"45")
-        mpv --fullscreen $HOME/Videos/00-alegria_comm.mp4 || :
+      mpv --fullscreen $HOME/Videos/00-alegria_comm.mp4 || :
+      ;;
     "05"|"38")
-        mpv --fullscreen $HOME/Videos/strog.cooking.mp4 || :
-    ;;
+      mpv --fullscreen $HOME/Videos/strog.cooking.mp4 || :
+      ;;
   esac
 
   sh/sleep.minute
