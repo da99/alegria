@@ -50,7 +50,7 @@ while sh/is.running ; do
     if sh/is.opening ; then
       pcmanfm --set-wallpaper $PWD/wall_display/humor/joy_tota.jpg --wallpaper-mode=crop
     else
-      pcmanfm --set-wallpaper $PWD/humor/closed.jpg --wallpaper-mode=crop
+      pcmanfm --set-wallpaper $PWD/wall_display/humor/closed.jpg --wallpaper-mode=crop
     fi
     sh/sleep.minute
     continue
