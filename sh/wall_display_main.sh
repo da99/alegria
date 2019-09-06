@@ -3,11 +3,13 @@
 #
 set -u -e -o pipefail
 
+
 if ! test "$USER" = "pi" ; then
   set -x
 fi
 
 cd $HOME/apps/alegria
+mkdir -p tmp
 
 killall lemonbar || :
 killall mpv || :
@@ -61,8 +63,14 @@ while sh/is.running ; do
     continue
   fi
 
+
   for x in $(find wall_display/special -type f -iname "*.jpg" -or -iname "*.png" | shuf) ; do
+    rm -f tmp/caption.txt || :
     pcmanfm --set-wallpaper "$PWD/$x" --wallpaper-mode=crop || :
+    caption="$PWD/$(dirname "$x")/caption/$(basename "$x").txt"
+    if test -f "$caption" ; then
+      cp -f "$caption" "tmp/caption.txt"
+    fi
     if sh/is.closing.soon ; then
       continue
     else

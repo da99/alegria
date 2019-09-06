@@ -14,7 +14,7 @@ while sh/is.running ; do
 
   if sh/is.open && ! sh/is.closing.soon ; then
     if ! pgrep -f top_photo_caption ; then
-      ( echo $top_msg | sh/bar.sh -n "top_photo_caption" -B $blue -F $white || : ) &
+      ( sh/top.caption.text | sh/bar.sh -n "top_photo_caption" -B $blue -F $white || : ) &
     fi
   else
     pkill -INT -f top_photo_caption || :

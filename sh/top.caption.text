@@ -19,5 +19,8 @@ while sh/is.running ; do
     echo "$new_msg"
   fi
   sleep 1
+  if ! pgrep -f top_photo_caption ; then
+    exit 0
+  fi
 done # while
 
