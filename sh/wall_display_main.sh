@@ -64,10 +64,10 @@ while sh/is.running ; do
   fi
 
 
-  for x in $(find wall_display/special -type f -iname "*.jpg" -or -iname "*.png" | shuf) ; do
+  for x in $(find wall_display/special -type f -iname "*.jpg" -or -iname "*.png" | tac) ; do
     rm -f tmp/caption.txt || :
     pcmanfm --set-wallpaper "$PWD/$x" --wallpaper-mode=crop || :
-    caption="$PWD/$(dirname "$x")/caption/$(basename "$x").txt"
+    caption="$PWD/$(dirname "$x")/captions/$(basename "$x").txt"
     if test -f "$caption" ; then
       cp -f "$caption" "tmp/caption.txt"
     fi
