@@ -16,7 +16,7 @@ while sh/is.running ; do
   if test -z "$new_msg" ; then
     echo "$default_msg"
   else
-    echo "$new_msg"
+    echo "%{c}$new_msg"
   fi
   sleep 1
   if ! pgrep -f top_photo_caption &>/dev/null ; then
