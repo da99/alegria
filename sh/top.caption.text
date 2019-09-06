@@ -1,0 +1,23 @@
+#!/usr/bin/env zsh
+#
+#
+set -u -e
+
+if ! sh/is.on.pi ; then
+  set -x
+fi
+
+cd $HOME/apps/alegria
+mkdir -p tmp
+
+default_msg="%{c}Fb: @AlegriaGrill. Instagram: @AlegriaGrillKaty. WWW: AlegriaGrill.com"
+while sh/is.running ; do
+  new_msg="$(cat tmp/caption.txt 2>/dev/null || :)"
+  if test -z "$new_msg" ; then
+    echo "$default_msg"
+  else
+    echo "$new_msg"
+  fi
+  sleep 1
+done # while
+
