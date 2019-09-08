@@ -26,5 +26,5 @@ while sh/is.running ; do
     pkill -INT -f top_photo_caption || :
   fi
 
-  sh/sleep.minute
+  sleep 1
 done
