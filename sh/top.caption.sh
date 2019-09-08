@@ -14,13 +14,13 @@ while sh/is.running ; do
 
   if sh/is.open && ! sh/is.closing.soon ; then
     msg=""
-    if ! pgrep -f top_photo_caption ; then
-      msg="$(cat tmp/caption.txt 2>/dev/null || :)"
-      if ! test -z "$msg" ; then
+    msg="$(cat tmp/caption.txt 2>/dev/null || :)"
+    if ! test -z "$msg" ; then
+      if ! pgrep -f top_photo_caption ; then
         (  echo "%{c}%{T2}$msg" | sh/bar.sh -n "top_photo_caption" -B $blue -F $white || : ) &
-      else
-        pkill -INT -f top_photo_caption || :
       fi
+    else
+      pkill -INT -f top_photo_caption || :
     fi
   else
     pkill -INT -f top_photo_caption || :
