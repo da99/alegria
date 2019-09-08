@@ -16,14 +16,14 @@ while sh/is.running ; do
     "00"|"15"|"30"|"45")
       mpv --fullscreen $HOME/Videos/00-alegria_comm.mp4 || :
       ;;
-    "05"|"20"|"35"|"50")
-      mpv --fullscreen $HOME/Videos/strog.cooking.mp4 || :
-      ;;
+#    "05"|"20"|"35"|"50")
+#      mpv --fullscreen $HOME/Videos/grill.01.mp4 || :
+#      ;;
     "10"|"25"|"40"|"55")
-      mpv --fullscreen $HOME/Videos/grill.01.mp4 || :
+      mpv --fullscreen $HOME/Videos/grill.02.mp4 || :
       ;;
     "13"|"28"|"43"|"58")
-      mpv --fullscreen $HOME/Videos/grill.02.mp4 || :
+	    true
       ;;
   esac
 
