@@ -32,7 +32,7 @@ done
 ( sh/wall.movies.sh || : ) &
 
 # TOP CAPTION:
-( sh/top.caption.sh || : ) &
+# ( sh/top.caption.sh || : ) &
 
 # Middle Caption:
 ( sh/middle.caption.sh || : ) &
@@ -65,17 +65,19 @@ while sh/is.running ; do
 
 
   for x in $(find wall_display/special -type f -iname "*.jpg" -or -iname "*.png" | tac) ; do
+    pkill -INT -f top_photo_caption || :
     rm -f tmp/caption.txt || :
-    pcmanfm --set-wallpaper "$PWD/$x" --wallpaper-mode=crop || :
-    caption="$PWD/$(dirname "$x")/captions/$(basename "$x").txt"
-    if test -f "$caption" ; then
-      cp -f "$caption" "tmp/caption.txt"
-    fi
     if sh/is.closing.soon ; then
       continue
-    else
-      sleep 10
     fi
+    pcmanfm --set-wallpaper "$PWD/$x" --wallpaper-mode=crop || :
+    caption_file="$PWD/$(dirname "$x")/captions/$(basename "$x").txt"
+    caption="$(cat "$caption_file" 2>/dev/null || :)"
+    if ! test -z "$caption" ; then
+      ( echo "%{c}%{T2}$caption" | sh/bar.sh -n "top_photo_caption" -B $blue -F $white || : ) &
+    fi
+    sleep 10
+    pkill -INT -f top_photo_caption || :
   done
 
 done # while
