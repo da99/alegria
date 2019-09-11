@@ -74,7 +74,7 @@ while sh/is.running ; do
     caption_file="$PWD/$(dirname "$x")/captions/$(basename "$x").txt"
     caption="$(cat "$caption_file" 2>/dev/null || :)"
     if ! test -z "$caption" ; then
-      ( echo "%{c}%{T2}$caption" | sh/bar.sh -n "top_photo_caption" -B $blue -F $white || : ) &
+      ( echo "%{c}%{T2}$caption" | sh/bar.sh -n "top_photo_caption" -B $blue -F $white -o -3 || : ) &
     fi
     sh/sleep.minute
     pkill -INT -f top_photo_caption || :
