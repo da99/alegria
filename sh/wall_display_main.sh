@@ -29,7 +29,8 @@ done
 ( sh/mouse.move.sh || : ) &
 
 # Movies:
-( sh/wall.movies.sh || : ) &
+# ( sh/wall.movies.sh || : ) &
+
 
 # TOP CAPTION:
 # ( sh/top.caption.sh || : ) &
@@ -40,7 +41,7 @@ done
 # BOTTOM CAPTION:
 blue="#132492"
 white="#ffffff"
-( sh/bottom.caption.sh | sh/bar.sh -f "helv:size=34:weight=bold:antialias=true" -n "bottom_photo_caption" -B $blue -F $white -b || : ) &
+( sh/bottom.caption.sh | sh/bar.sh -f "helv:size=34:weight=bold:antialias=true" -n "bottom_photo_caption" -B $blue -F $white -g "1920x80+0+80" || : ) &
 
 
 # Photo Loop:
@@ -64,7 +65,7 @@ while sh/is.running ; do
   fi
 
 
-  for x in $(find wall_display/special -type f -iname "*.jpg" -or -iname "*.png" | tac) ; do
+  for x in $(find wall_display/special -type f -iname "store.jpg" -or -iname "store.png" | tac) ; do
     pkill -INT -f top_photo_caption || :
     rm -f tmp/caption.txt || :
     if sh/is.closing.soon ; then
