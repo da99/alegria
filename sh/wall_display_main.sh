@@ -41,7 +41,7 @@ done
 # BOTTOM CAPTION:
 blue="#132492"
 white="#ffffff"
-( sh/bottom.caption.sh | sh/bar.sh -f "helv:size=34:weight=bold:antialias=true" -n "bottom_photo_caption" -B $blue -F $white -g "1920x80+0+80" -o -9 || : ) &
+( sh/bottom.caption.sh | sh/bar.sh -f "helv:size=34:weight=bold:antialias=true" -n "bottom_photo_caption" -B $blue -F $white -g "1920x120+0+80" -o -2 || : ) &
 
 
 # Photo Loop:
