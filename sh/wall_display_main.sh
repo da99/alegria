@@ -64,8 +64,7 @@ while sh/is.running ; do
     continue
   fi
 
-
-  for x in $(find wall_display/special -type f -iname "store.jpg" -or -iname "logo.jpg" | tac) ; do
+  for x in $(find wall_display/special -type f -iname "store.jpg" -or iname "stroganoff.jpg" -or -iname "logo.jpg" | tac) ; do
     pkill -INT -f top_photo_caption || :
     rm -f tmp/caption.txt || :
     if sh/is.closing.soon ; then
@@ -77,7 +76,7 @@ while sh/is.running ; do
     if ! test -z "$caption" ; then
       ( echo "%{c}%{T2}$caption" | sh/bar.sh -n "top_photo_caption" -B $blue -F $white || : ) &
     fi
-    sleep 30
+    sh/sleep.minute
     pkill -INT -f top_photo_caption || :
   done
 
