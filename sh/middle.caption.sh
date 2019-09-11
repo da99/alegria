@@ -20,9 +20,9 @@ while sh/is.running ; do
   fi
 
   if sh/is.closing.soon ; then
-    ( echo "%{c}%{T3}Alegria is closing soon." | sh/bar.sh \
+    ( echo "%{c}%{T4}Alegria is closing soon." | sh/bar.sh \
       -n middle_bar_caption \
-      -g "1920x250+0+$((1080/2 - 125))" \
+      -g "1920x200+0+$((1080/2 - 105))" \
       -B "#FFCD30" \
       -F "#AC0000"
     ) &
