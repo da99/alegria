@@ -64,7 +64,7 @@ while sh/is.running ; do
     continue
   fi
 
-  for x in $(find wall_display/special -type f -iname "store.jpg" -or iname "stroganoff.jpg" | tac) ; do
+  for x in $(find wall_display/special -type f -iname "store.jpg" -or -iname "stroganoff.jpg" | tac) ; do
     pkill -INT -f top_photo_caption || :
     rm -f tmp/caption.txt || :
     if sh/is.closing.soon ; then
