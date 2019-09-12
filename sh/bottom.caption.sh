@@ -13,7 +13,7 @@ while sh/is.running ; do
   min="$(date +"%M")"
   seconds="$(date +"%S")"
 
-  public_time="$(date +"%I:%M %p")"
+  public_time="$(date +"%I:%M:%S %p")"
 
   case $day_name in
     Sun)
@@ -39,10 +39,10 @@ while sh/is.running ; do
       if test $min -gt 30 && test $min -lt 59 && test $((closing_hour - 1)) -eq $hour ; then
         echo "%{c}%{T4}$public_time (We close in $((60 - $min)) mins)"
       else
-        echo "%{c}%{T4}$public_time $day_name (Closing: $closing_hour PM)"
+        echo "%{c}%{T4}${public_time} $day_name (Closing: $closing_hour PM)"
       fi
     fi
   fi
 
-  sh/sleep.minute
+  sleep 1
 done
