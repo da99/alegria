@@ -10,10 +10,9 @@ white="#ffffff"
 
 exec lemonbar -p  \
   -f "Raleway:size=32:weight=bold:antialias=true" \
-  -f "helv:size=54:weight=bold:antialias=true" \
-  -g "1016x80+0+0" \
+  -f "Raleway:size=42:weight=bold:antialias=true" \
+  -g "1016x120+0+0" \
   -B "$blue" \
   -F "$white" \
-  -o -8 \
   -n top_bar_caption \
   $@
