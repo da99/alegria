@@ -9,14 +9,19 @@ cd $HOME/apps/alegria
 
 pkill -f top_bar_caption || :
 
+bar_pid=""
 while sh/is.running ; do
   if ! pgrep -f top_bar_caption &> /dev/null ; then
     ( sh/01/top.text | sh/01/top.bar ) &
+    bar_pid="$!"
+    echo "TOP BAR CAPTION PID: $bar_pid"
   fi
   sh/sleep.minute
 done
 
-pkill -f top_bar_caption || :
+if ! test -z "$bar_pid" ; then
+ kill "$bar_pid" || :
+fi
 
 
 

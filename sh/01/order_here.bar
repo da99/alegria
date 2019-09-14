@@ -13,7 +13,7 @@ exec lemonbar -p  \
   -f "Raleway:size=32:weight=bold:antialias=true" \
   -f "Raleway:size=42:weight=bold:antialias=true" \
   -f "Raleway:size=82:weight=bold:antialias=true" \
-  -g "1016x200+0+180" \
+  -g "1016x200+0+280" \
   -B "$red" \
   -F "$white" \
   -n order_here_caption \
