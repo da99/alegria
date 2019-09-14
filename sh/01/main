@@ -27,7 +27,12 @@ done
 # TOP CAPTION:
 ( sh/01/top || : ) &
 
+# Order Here sign:
+( sh/01/order_here || : ) &
+
 while sh/is.running ; do
   sh/sleep.minute
 done
+
+echo "=== Done main: $$"
 

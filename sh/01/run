@@ -9,6 +9,8 @@ echo -n "Wall display (name: 01)  is starting. Downloading updates..."
 git pull || :
 
 export WALL_PID="$$"
+echo "=== WALL_PID $$"
 sh/01/main
 
+echo "=== Done run: $$"
 

@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+#
+#
+set -u -e
+
+PATH="$PATH:$HOME/progs/lemonbar-xft"
+
+cd $HOME/apps/alegria
+
+cap_name="order_here_caption"
+pkill -f $cap_name || :
+
+while sh/is.running ; do
+  if ! pgrep -f $cap_name &> /dev/null ; then
+    ( sh/01/order_here.text | sh/01/order_here.bar ) &
+  fi
+  sh/sleep.minute
+done
+
+pkill -f $cap_name || :
+
+
+
