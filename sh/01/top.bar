@@ -15,4 +15,5 @@ exec lemonbar -p  \
   -B "$blue" \
   -F "$white" \
   -o -8 \
+  -n top_bar_caption \
   $@
