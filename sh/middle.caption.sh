@@ -10,7 +10,7 @@ while sh/is.running ; do
   if sh/is.opening ; then
     ( echo "%{c}%{T3}Alegria has not opened yet." | sh/bar.sh \
       -n middle_bar_caption \
-      -g "1920x200+0+80" \
+      -g "1920x110+0+40" \
       -B "#AC0000" -F "#ffffff" ) &
     while sh/is.opening ; do
       sh/sleep.minute
