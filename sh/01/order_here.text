@@ -10,7 +10,7 @@ while sh/is.running ; do
     echo "%{c}%{T3}To-go orders please. We are closing soon."
   else
     if sh/is.open ; then
-     echo "%{c}%{T3}Order Here."
+     echo "%{c}%{T3}Faça seu pedido aqui."
     fi
   fi
   sh/sleep.minute

@@ -12,16 +12,17 @@ sh/01/top.text | sh/01/top.bar
 
 exit 0
 bar_pid=""
+sh/01/top.text | sh/01/top.bar
 
-while sh/is.running ; do
-  if ! pgrep -f top_bar_caption &> /dev/null ; then
-    echo "=== Starting a new $0 (top bar)..."
-    ( sh/01/top.text | sh/01/top.bar ) &
-    bar_pid="$!"
-    echo "TOP BAR CAPTION PID: $bar_pid"
-  fi
-  sh/sleep.minute
-done
+# while sh/is.running ; do
+#   if ! pgrep -f top_bar_caption &> /dev/null ; then
+#     echo "=== Starting a new $0 (top bar)..."
+    # ( sh/01/top.text | sh/01/top.bar ) &
+    # bar_pid="$!"
+    # echo "TOP BAR CAPTION PID: $bar_pid"
+  # fi
+  # sh/sleep.minute
+# done
 
 echo "=== DONE: $0"
 
