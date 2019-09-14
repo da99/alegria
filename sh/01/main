@@ -1,0 +1,33 @@
+#!/usr/bin/env zsh
+#
+#
+set -u -e -o pipefail
+
+
+if ! test "$USER" = "pi" ; then
+  set -x
+fi
+
+cd $HOME/apps/alegria
+mkdir -p tmp
+
+killall lemonbar || :
+killall mpv || :
+killall smplayer || :
+killall vlc || :
+
+# Minimize any windows.
+for x in $(wmctrl -l | cut -d' ' -f1); do
+  xdotool windowminimize "$x" || :
+done
+
+# Get the mouse out of the way:
+( sh/01/hide_cursor || : ) &
+
+# TOP CAPTION:
+( sh/01/top || : ) &
+
+while sh/is.running ; do
+  sh/sleep.minute
+done
+

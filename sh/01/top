@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+#
+#
+set -u -e
+
+PATH="$PATH:$HOME/progs/lemonbar-xft"
+
+cd $HOME/apps/alegria
+
+pkill -f top_bar_caption || :
+
+while sh/is.running ; do
+  if ! pgrep -f top_bar_caption &> /dev/null ; then
+    ( sh/01/top.text | sh/01/top.bar ) &
+  fi
+  sh/sleep.minute
+done
+
+pkill -f top_bar_caption || :
+
+
+

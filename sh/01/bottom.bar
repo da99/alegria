@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+#
+#
+set -u -e
+
+PATH="$PATH:$HOME/progs/lemonbar-xft"
+
+blue="#132492"
+white="#ffffff"
+
+
+exec lemonbar -p  \
+  -f "Raleway:size=32:weight=bold:antialias=true" \
+  -f "helv:size=54:weight=bold:antialias=true" \
+  -g "1016x80+0+0" \
+  -B "$blue" \
+  -F "$white" \
+  $@

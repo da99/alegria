@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+#
+#
+set -u -e
+
+cd $HOME/apps/alegria
+
+while sh/is.running ; do
+  xdotool mousemove 1080 1980 || :
+  sh/sleep.minute
+  sleep $(( 60 * 2 ))
+done
+

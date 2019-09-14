@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+set -u -e -x
+sudo apt-get install \
+	neovim \
+	git \
+	xdotool \
+	wmctrl \
+	fonts-font-awesome \
+	fonts-freefont-otf \
+	fonts-open-sans \
+	texlive-fonts-extra \
+	 || :
