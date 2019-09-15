@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+#
+#
+set -u -e -o pipefail
+
+
+if test $(hostname) = "v01" ; then
+  set -x
+fi
+
+secs="$(date +"%-S")"
+wait_secs=$(( 60 - $secs ))
+
+mins="$(date +"%-M")"
+wait_mins=$(( 60 - $mins ))
+
+total="$(( secs + ($wait_mins * 60) ))"
+
+sleep $total

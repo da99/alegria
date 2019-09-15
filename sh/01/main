@@ -31,6 +31,7 @@ done
 ( sh/01/line2 || : ) &
 ( sh/01/line3 || : ) &
 ( sh/01/line4 || : ) &
+( sh/01/wallpaper || : ) &
 
 # Order Here sign:
 # ( sh/01/order_here || : ) &

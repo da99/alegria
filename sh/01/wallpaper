@@ -1,0 +1,30 @@
+#!/usr/bin/env zsh
+#
+#
+set -u -e -o pipefail
+
+
+cd $HOME/apps/alegria
+
+while sh/is.running ; do
+  if sh/is.stroganoff.special ; then
+    pcmanfm --set-wallpaper $PWD/wall_display/01/stroganoff.01.jpg --wallpaper-mode=git
+    sh/sleep.hour
+    continue
+  fi
+
+  if sh/is.kids.meal.special ; then
+    pcmanfm --set-wallpaper $PWD/wall_display/01/kids.special.01.jpg --wallpaper-mode=git
+    sh/sleep.hour
+    continue
+  fi
+
+  if sh/is.closed ; then
+    pcmanfm --set-wallpaper $PWD/wall_display/closing/closed.jpg --wallpaper-mode=git
+    sh/sleep.hour
+    continue
+  fi
+
+  pcmanfm --set-wallpaper $PWD/wall_display/01/coco.flan.01.jpg --wallpaper-mode=git
+  sh/sleep.hour
+done # while
