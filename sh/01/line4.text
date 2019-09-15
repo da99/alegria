@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+#
+#
+set -u -e -o pipefail
+
+cd $HOME/apps/alegria
+
+while sh/is.running ; do
+  if sh/is.closing.soon ; then
+    echo "%{c}%{T3}We are closing soon."
+  else
+	  if sh/is.open ; then
+		  echo "%{c}%{T4}Faça seu pedido aqui."
+	  else
+		  echo "%{c}%{T5}We are closed."
+	  fi
+  fi
+  sh/sleep.minute
+done
+

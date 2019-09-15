@@ -27,8 +27,12 @@ done
 # TOP CAPTION:
 ( sh/01/time || : ) &
 
+( sh/01/line1 || : ) &
+( sh/01/line2 || : ) &
+( sh/01/line3 || : ) &
+
 # Order Here sign:
-( sh/01/order_here || : ) &
+# ( sh/01/order_here || : ) &
 
 while sh/is.running ; do
   sh/sleep.minute

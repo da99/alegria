@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+#
+#
+set -u -e
+
+PATH="$PATH:$HOME/progs/lemonbar-xft"
+
+cd $HOME/apps/alegria
+
+line_name="line3"
+
+sh/01/${line_name}.text | sh/01/${line_name}.bar 
