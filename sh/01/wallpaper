@@ -20,7 +20,7 @@ while sh/is.running ; do
   fi
 
   if sh/is.closed ; then
-    pcmanfm --set-wallpaper $PWD/wall_display/closing/closed.jpg --wallpaper-mode=git
+    pcmanfm --set-wallpaper $PWD/wall_display/01/closed.01.jpg --wallpaper-mode=git
     sh/sleep.hour
     continue
   fi
