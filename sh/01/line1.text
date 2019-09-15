@@ -8,13 +8,29 @@ cd $HOME/apps/alegria
 while sh/is.running ; do
   if sh/is.closing.soon ; then
     echo "%{c}%{T5}We"
-  else
-	  if sh/is.open ; then
-		  echo "%{c}%{T5}Faça"
-	  else
-		  echo "%{c}%{T5}We"
-	  fi
+    sh/sleep.minute
+    continue
   fi
+
+  if sh/is.closed ; then
+    echo "%{c}%{T5}We"
+    sh/sleep.minute
+    continue
+  fi
+
+  if sh/is.kids.special ; then
+    echo "%{c}%{T5}Free"
+    sh/sleep.minute
+    continue
+  fi
+
+  if sh/is.stroganoff ; then
+    echo "%{c}%{T5}\$7.99"
+    sh/sleep.minute
+    continue
+  fi
+
+  echo "%{c}%{T5}Faça"
   sh/sleep.minute
 done
 

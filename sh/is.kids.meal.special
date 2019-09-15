@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+#
+#
+set -u -e -o pipefail
+
+cd $HOME/apps/alegria
+
+day_name="$(date +"%a")"
+hour="$(date +"%-I")"
+hour24="$(date +"%-H")"
+min="$(date +"%M")"
+seconds="$(date +"%S")"
+
+( test "$day_name" = "Tue" || test "$day_name" = "Wed" ) && test "$hour24" -gt 15
