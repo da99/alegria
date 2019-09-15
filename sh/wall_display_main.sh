@@ -51,8 +51,8 @@ while sh/is.running ; do
 
   if sh/is.closed ; then
     if sh/is.opening ; then
-      pcmanfm --set-wallpaper $(sh/random.photo $PWD/wall_display/humor) --wallpaper-mode=crop
-    else
+      # pcmanfm --set-wallpaper $(sh/random.photo $PWD/wall_display/humor) --wallpaper-mode=crop
+    # else
       pcmanfm --set-wallpaper $PWD/wall_display/closing/closed.jpg --wallpaper-mode=crop
     fi
     sh/sleep.minute
