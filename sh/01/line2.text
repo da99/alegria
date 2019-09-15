@@ -7,10 +7,10 @@ cd $HOME/apps/alegria
 
 while sh/is.running ; do
   if sh/is.closing.soon ; then
-    echo "%{c}%{T3}are"
+    echo "%{c}%{T5}are"
   else
 	  if sh/is.open ; then
-		  echo "%{c}%{T4}seu"
+		  echo "%{c}%{T5}seu"
 	  else
 		  echo "%{c}%{T5}are"
 	  fi
