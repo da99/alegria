@@ -7,16 +7,14 @@ PATH="$PATH:$HOME/progs/lemonbar-xft"
 
 blue="#132492"
 white="#ffffff"
-red="#B60A0A"
 
 exec lemonbar -p  \
   -f "Raleway:size=32:weight=bold:antialias=true" \
   -f "Raleway:size=42:weight=bold:antialias=true" \
   -f "Raleway:size=52:weight=bold:antialias=true" \
   -f "Raleway:size=62:weight=bold:antialias=true" \
-  -f "Raleway:size=72:weight=bold:antialias=true" \
-  -g "1016x200+0+1020" \
-  -B "$red" \
+  -g "1016x120+0+1700" \
+  -B "$blue" \
   -F "$white" \
-  -n order_here_caption \
+  -n closing_at_caption \
   $@

@@ -25,7 +25,7 @@ done
 ( sh/01/hide_cursor || : ) &
 
 # TOP CAPTION:
-( sh/01/top || : ) &
+( sh/01/time || : ) &
 
 # Order Here sign:
 ( sh/01/order_here || : ) &

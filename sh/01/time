@@ -7,8 +7,8 @@ PATH="$PATH:$HOME/progs/lemonbar-xft"
 
 cd $HOME/apps/alegria
 
-pkill -f top_bar_caption || :
-sh/01/top.text | sh/01/top.bar
+pkill -f time_caption || :
+sh/01/time.text | sh/01/time.bar
 
 exit 0
 bar_pid=""

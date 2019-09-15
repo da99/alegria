@@ -1,0 +1,22 @@
+#!/usr/bin/env zsh
+#
+#
+set -u -e -o pipefail
+
+cd $HOME/apps/alegria
+
+while sh/is.running ; do
+
+  day_name="$(date +"%a")"
+  hour="$(date +"%I")"
+  hour24="$(date +"%H")"
+  min="$(date +"%M")"
+  seconds="$(date +"%S")"
+
+  public_time="$(date +"%I:%M:%S %p")"
+
+
+  echo "%{c}%{T4}$public_time"
+
+  sleep 1
+done

@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+#
+#
+set -u -e
+
+PATH="$PATH:$HOME/progs/lemonbar-xft"
+
+cd $HOME/apps/alegria
+
+pkill -f closing_at_caption || :
+sh/01/closing.at.text | sh/01/closing.at.bar
+
+exit 0
+bar_pid=""
+
+# while sh/is.running ; do
+#   if ! pgrep -f top_bar_caption &> /dev/null ; then
+#     echo "=== Starting a new $0 (top bar)..."
+    # ( sh/01/top.text | sh/01/top.bar ) &
+    # bar_pid="$!"
+    # echo "TOP BAR CAPTION PID: $bar_pid"
+  # fi
+  # sh/sleep.minute
+# done
+
+echo "=== DONE: $0"
+
+
+
+
