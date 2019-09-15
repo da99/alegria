@@ -15,7 +15,7 @@ exec lemonbar -p  \
   -f "Raleway:size=52:weight=bold:antialias=true" \
   -f "Raleway:size=62:weight=bold:antialias=true" \
   -f "Raleway:size=124:weight=bold:antialias=true" \
-  -g "1016x150+0+800" \
+  -g "1016x150+0+820" \
   -F "$red" \
   -B "$white" \
   -n line3_caption \
