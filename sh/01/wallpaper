@@ -8,7 +8,7 @@ cd $HOME/apps/alegria
 
 while sh/is.running ; do
   if sh/is.stroganoff.special ; then
-    pcmanfm --set-wallpaper $PWD/wall_display/01/stroganoff.01.jpg --wallpaper-mode=git
+    pcmanfm --set-wallpaper $PWD/wall_display/01/stroganoff.01.jpg --wallpaper-mode=fit
     sh/sleep.hour
     continue
   fi
