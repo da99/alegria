@@ -25,7 +25,7 @@ while sh/is.running ; do
   fi
 
   if sh/is.stroganoff.special ; then
-    echo "%{c}%{T5}Mon. & Tues."
+    echo "%{c}%{T4}Mon. & Tues."
     sh/sleep.minute
     continue
   fi
