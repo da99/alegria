@@ -13,18 +13,18 @@ while sh/is.running ; do
     continue
   fi
 
-  if sh/is.kids.meal.special ; then
-    pcmanfm --set-wallpaper $PWD/wall_display/01/kids.special.01.jpg --wallpaper-mode=git
+  if sh/is.kids.special ; then
+    pcmanfm --set-wallpaper $PWD/wall_display/01/kids.special.01.jpg --wallpaper-mode=fit
     sh/sleep.hour
     continue
   fi
 
   if sh/is.closed ; then
-    pcmanfm --set-wallpaper $PWD/wall_display/01/closed.01.jpg --wallpaper-mode=git
+    pcmanfm --set-wallpaper $PWD/wall_display/01/closed.01.jpg --wallpaper-mode=fit
     sh/sleep.hour
     continue
   fi
 
-  pcmanfm --set-wallpaper $PWD/wall_display/01/coco.flan.01.jpg --wallpaper-mode=git
+  pcmanfm --set-wallpaper $PWD/wall_display/01/order_here.jpg --wallpaper-mode=fit
   sh/sleep.hour
 done # while
