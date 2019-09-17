@@ -25,7 +25,7 @@ done
 ( sh/01/hide_cursor || : ) &
 
 # TOP CAPTION:
-( sh/01/time || : ) &
+# ( sh/01/time || : ) &
 
 # ( sh/01/line1 || : ) &
 # ( sh/01/line2 || : ) &
