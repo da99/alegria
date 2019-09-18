@@ -16,13 +16,18 @@ killall mpv || :
 killall smplayer || :
 killall vlc || :
 
+
+# Get the mouse out of the way:
+( sh/01/hide_cursor || : ) &
+
+# Auto-update:
+( sh/auto_update.sh || : ) &
+
 # Minimize any windows.
 for x in $(wmctrl -l | cut -d' ' -f1); do
   xdotool windowminimize "$x" || :
 done
 
-# Get the mouse out of the way:
-( sh/01/hide_cursor || : ) &
 
 # TOP CAPTION:
 # ( sh/01/time || : ) &

@@ -9,6 +9,6 @@ echo -n "Wall display is starting. Downloading updates..."
 git pull || :
 
 export WALL_PID="$$"
-sh/wall_display_main.sh
+sh/tv/main
 
 

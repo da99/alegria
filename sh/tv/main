@@ -26,23 +26,20 @@ done
 ( sh/auto_update.sh || : ) &
 
 # Get the mouse out of the way:
-( sh/mouse.move.sh || : ) &
+( sh/tv/mouse.move || : ) &
 
 # Movies:
-# ( sh/wall.movies.sh || : ) &
+# ( sh/tv/movies || : ) &
 
 
 # TOP CAPTION:
-# ( sh/top.caption.sh || : ) &
+# ( sh/tv/top.caption || : ) &
 
 # Middle Caption:
-( sh/middle.caption.sh || : ) &
+( sh/tv/middle.caption || : ) &
 
 # BOTTOM CAPTION:
-blue="#132492"
-white="#ffffff"
-( sh/bottom.caption.sh | sh/bar.sh -f "helv:size=34:weight=bold:antialias=true" -n "bottom_photo_caption" -B $blue -F $white -g "1920x120+0+$((1080 - 120 - 20))"  || : ) &
-
+( sh/tv/time || : ) &
 
 # Photo Loop:
 while sh/is.running ; do

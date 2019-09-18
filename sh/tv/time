@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+#
+#
+set -u -e -o pipefail
+
+blue="#132492"
+white="#ffffff"
+( sh/tv/time.text | sh/bar.sh -f "helv:size=34:weight=bold:antialias=true" -n "bottom_photo_caption" -B $blue -F $white -g "1920x120+0+$((1080 - 120 - 20))"  || : ) &
