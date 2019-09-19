@@ -31,6 +31,6 @@ while sh/is.running ; do
     continue
   fi
 
-  pcmanfm --set-wallpaper $PWD/wall_display/01/order_here.jpg --wallpaper-mode=fit
+  pcmanfm --set-wallpaper $PWD/wall_display/01/order_here.strogan.jpg --wallpaper-mode=fit
   sh/sleep.hour
 done # while
