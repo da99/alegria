@@ -31,6 +31,13 @@ while sh/is.running ; do
     continue
   fi
 
-  pcmanfm --set-wallpaper $PWD/wall_display/01/order_here.strogan.jpg --wallpaper-mode=fit
-  sh/sleep.hour
+  while sh/is.open && ! sh/is.closing.soon ; do
+    for x in $(find wall_display/01 -type f -name 'order_here.*.jpg') ; do
+      if sh/is.closing.soon ; then
+        continue
+      fi
+      pcmanfm --set-wallpaper "$PWD/$x" --wallpaper-mode=fit
+      sh/sleep.minute
+    done
+  done
 done # while
