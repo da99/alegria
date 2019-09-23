@@ -4,7 +4,7 @@
 set -u -e -o pipefail
 
 
-if test $(hostname) = "v01" ; then
+if ! test $(hostname) = "pi" ; then
   set -x
 fi
 
@@ -12,7 +12,7 @@ secs="$(date +"%-S")"
 wait_secs=$(( 60 - $secs ))
 
 mins="$(date +"%-M")"
-wait_mins=$(( 60 - $mins ))
+wait_mins=$(( 60 - $mins - 1))
 
 total="$(( secs + ($wait_mins * 60) ))"
 
