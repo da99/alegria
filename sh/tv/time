@@ -17,4 +17,5 @@ while sh/is.running ; do
     pkill -INT bottom_caption || :
   fi
   sh/sleep.hour
+  sh/sleep.minute
 done
