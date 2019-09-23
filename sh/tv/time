@@ -9,6 +9,7 @@ white="#ffffff"
 
 cd /apps/alegria
 while sh/is.running ; do
+  sh/sleep.minute
   if sh/is.closing.soon ; then
     if ! pgrep -f bottom_caption ; then
       ( sh/tv/time.text | sh/bar.sh -f "helv:size=34:weight=bold:antialias=true" -n "bottom_caption" -B $blue -F $white -g "1920x120+0+$((1080 - 120 - 20))"  || : ) &
@@ -17,5 +18,4 @@ while sh/is.running ; do
     pkill -INT bottom_caption || :
   fi
   sh/sleep.hour
-  sh/sleep.minute
 done
