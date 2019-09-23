@@ -8,7 +8,6 @@ white="#ffffff"
 
 
 while sh/is.running ; do
-  sh/sleep.minute
   if sh/is.closing.soon ; then
     if ! pgrep -f bottom_caption ; then
       ( sh/tv/time.text | sh/bar.sh -f "helv:size=34:weight=bold:antialias=true" -n "bottom_caption" -B $blue -F $white -g "1920x120+0+$((1080 - 120 - 20))"  || : ) &
