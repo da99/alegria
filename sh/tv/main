@@ -3,6 +3,8 @@
 #
 set -u -e -o pipefail
 
+blue="#132492"
+white="#ffffff"
 
 if ! test "$USER" = "pi" ; then
   set -x
