@@ -41,7 +41,7 @@ done
 ( sh/tv/middle.caption || : ) &
 
 # BOTTOM CAPTION:
-( sh/tv/time || : ) &
+# ( sh/tv/time || : ) &
 
 # Photo Loop:
 while sh/is.running ; do
