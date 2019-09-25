@@ -63,20 +63,11 @@ while sh/is.running ; do
     continue
   fi
 
-  for x in $(find wall_display/special -type f -iname "store.jpg"  -or -iname "stroganoff.jpg" ) ; do
-    pkill -INT -f top_photo_caption || :
-    rm -f tmp/caption.txt || :
+  for x in $(find images/final/tv/ -type f -iname "*.jpg" ) ; do
     if sh/is.closing.soon ; then
       continue
     fi
     pcmanfm --set-wallpaper "$PWD/$x" --wallpaper-mode=crop || :
-    caption_file="$PWD/$(dirname "$x")/captions/$(basename "$x").txt"
-    caption="$(cat "$caption_file" 2>/dev/null || :)"
-    if ! test -z "$caption" ; then
-      ( echo "%{c}%{T2}$caption" | sh/bar.sh -n "top_photo_caption" -B $blue -F $white -o -7 || : ) &
-    fi
-    sh/sleep.minute
-    pkill -INT -f top_photo_caption || :
   done
 
 done # while
