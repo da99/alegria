@@ -12,3 +12,5 @@ if test -z "$second" ; then
   second="1"
 fi
 sleep $(( 60 - $second )) || sleep 5
+sleep 1
+
