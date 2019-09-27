@@ -11,13 +11,20 @@ if sh/is.on.pi ; then
 fi
 
 
+day_name="$(date +"%a")"
 now_24="$(date +"%H")"
 closing_24=$(sh/what.hour24.closing)
 minute="$(date +"%M")"
 
+case "$day_name" in
+  Fri|Sat|Sun|Mon)
 if test "$now_24" -eq $(( $closing_24 - 1)) ; then
+	if test "$minute" = "45" ; then
   exit 0
+	fi
 fi
+	  ;;
+esac
 
 exit 1
 

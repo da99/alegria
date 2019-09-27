@@ -38,7 +38,7 @@ done
 # ( sh/tv/top.caption || : ) &
 
 # Middle Caption:
-( sh/tv/middle.caption || : ) &
+# ( sh/tv/middle.caption || : ) &
 
 # BOTTOM CAPTION:
 # ( sh/tv/time || : ) &
@@ -68,6 +68,7 @@ while sh/is.running ; do
       continue
     fi
     pcmanfm --set-wallpaper "$PWD/$x" --wallpaper-mode=crop || :
+    sh/sleep.minute
   done
 
 done # while
