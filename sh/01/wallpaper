@@ -20,24 +20,22 @@ while sh/is.running ; do
   fi
 
   if sh/is.closed ; then
-    pcmanfm --set-wallpaper $PWD/wall_display/01/closed.01.jpg --wallpaper-mode=fit
+    pcmanfm --set-wallpaper $PWD/images/final/01/brazil_coffee_candy.jpg --wallpaper-mode=fit
     sh/sleep.hour
     continue
   fi
 
   if sh/is.closing.soon ; then
-    pcmanfm --set-wallpaper $PWD/wall_display/01/closing.soon.jpg --wallpaper-mode=fit
+    pcmanfm --set-wallpaper $PWD/images/final/01/mark_11_24.jpg --wallpaper-mode=fit
     sh/sleep.minute
     continue
   fi
 
-  while sh/is.open && ! sh/is.closing.soon ; do
-    for x in $(find wall_display/01 -type f -name 'order_here.*.jpg') ; do
-      if sh/is.closing.soon ; then
-        continue
-      fi
-      pcmanfm --set-wallpaper "$PWD/$x" --wallpaper-mode=fit
-      sh/sleep.minute
-    done
+  for x in $(find wall_display/01 -type f -name 'order_here.*.jpg') ; do
+    if sh/is.closing.soon || sh/is.closed ; then
+      continue
+    fi
+    pcmanfm --set-wallpaper "$PWD/$x" --wallpaper-mode=fit
+    sh/sleep.minute
   done
 done # while

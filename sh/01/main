@@ -22,6 +22,7 @@ killall vlc || :
 
 # Auto-update:
 ( sh/auto_update.sh || : ) &
+( sh/auto_reboot.sh || : ) &
 
 # Minimize any windows.
 for x in $(wmctrl -l | cut -d' ' -f1); do
@@ -32,10 +33,6 @@ done
 # TOP CAPTION:
 # ( sh/01/time || : ) &
 
-# ( sh/01/line1 || : ) &
-# ( sh/01/line2 || : ) &
-# ( sh/01/line3 || : ) &
-# ( sh/01/line4 || : ) &
 ( sh/01/wallpaper || : ) &
 
 # Order Here sign:

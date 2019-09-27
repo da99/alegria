@@ -26,6 +26,7 @@ done
 
 # Auto-update:
 ( sh/auto_update.sh || : ) &
+( sh/auto_reboot.sh || : ) &
 
 # Get the mouse out of the way:
 ( sh/tv/mouse.move || : ) &
@@ -45,31 +46,18 @@ done
 
 # Photo Loop:
 while sh/is.running ; do
-  seconds="$(date +"%S")"
-  minute="$(date +"%M")"
 
-  if sh/is.closed ; then
-    if sh/is.opening ; then
-      # pcmanfm --set-wallpaper $(sh/random.photo $PWD/wall_display/humor) --wallpaper-mode=crop
-    # else
-      pcmanfm --set-wallpaper $PWD/wall_display/closing/closed.jpg --wallpaper-mode=crop
-    fi
-    sh/sleep.minute
-    continue
+  if sh/is.open ; then
+    for x in $(find images/final/tv/ -type f -iname "*.jpg" ) ; do
+      if sh/is.open ; then
+        pcmanfm --set-wallpaper "$PWD/$x" --wallpaper-mode=crop || :
+        sh/sleep.minute
+      fi
+    done
+  else
+    pcmanfm --set-wallpaper "$PWD/wall_display/special/mark_11.24.jpg" --wallpaper-mode=crop || :
+    sh/sleep.hour
   fi
-
-  if sh/is.closing.soon ; then
-    sh/sleep.minute
-    continue
-  fi
-
-  for x in $(find images/final/tv/ -type f -iname "*.jpg" ) ; do
-    if sh/is.closing.soon ; then
-      continue
-    fi
-    pcmanfm --set-wallpaper "$PWD/$x" --wallpaper-mode=crop || :
-    sh/sleep.minute
-  done
 
 done # while
 
