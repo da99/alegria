@@ -31,15 +31,15 @@ while sh/is.running ; do
   esac
 
   if sh/is.opening ; then
-    echo "%{c}%{T4}$public_time $day_name ($((60 - $min)) mins. to opening.)"
+    echo "%{r}%{T4}$public_time $day_name ($((60 - $min)) mins. to opening.)"
   else
     if sh/is.closed ; then
-      echo "%{c}%{T4}$public_time $day_name (We are still closed.)"
+      echo "%{r}%{T4}$public_time $day_name (We are still closed.)"
     else
       if sh/is.closing.soon ; then
-        echo "%{c}%{T4}$public_time (We close in $((60 - $min)) mins)"
+        echo "%{r}%{T4}$public_time (We close in $((60 - $min)) mins)"
       else
-        echo "%{c}%{T4}${public_time} $day_name (Closing: $closing_hour PM)"
+        echo "%{r}%{T4}${public_time} $day_name (Closing: $closing_hour PM)"
       fi
     fi
   fi

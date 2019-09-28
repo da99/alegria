@@ -7,13 +7,4 @@ blue="#132492"
 white="#ffffff"
 
 
-while sh/is.running ; do
-  if sh/is.closing.soon ; then
-    if ! pgrep -f bottom_caption ; then
-      ( sh/tv/time.text | sh/bar.sh -f "helv:size=34:weight=bold:antialias=true" -n "bottom_caption" -B $blue -F $white -g "1920x120+0+$((1080 - 120 - 20))"  || : ) &
-    fi
-  else
-    pkill -INT bottom_caption || :
-  fi
-  sh/sleep.hour
-done
+       sh/tv/time.text | $HOME/progs/lemonbar-xft/lemonbar -n "bottom_caption" -p -b 
