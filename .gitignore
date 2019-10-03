@@ -2,5 +2,6 @@
 /.shards/
 /.crystal/
 /tmp/
+/vendor
 Thumbs.db
 Thumbs.db:encryptable

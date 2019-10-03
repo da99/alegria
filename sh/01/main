@@ -18,29 +18,20 @@ killall vlc || :
 
 
 # Get the mouse out of the way:
-( sh/01/hide_cursor || : ) &
+# ( sh/01/hide_cursor || : ) &
 
 # Auto-update:
-( sh/auto_update.sh || : ) &
-( sh/auto_reboot.sh || : ) &
+# ( sh/auto_update.sh || : ) &
+# ( sh/auto_reboot.sh || : ) &
 
 # Minimize any windows.
-for x in $(wmctrl -l | cut -d' ' -f1); do
-  xdotool windowminimize "$x" || :
-done
+# for x in $(wmctrl -l | cut -d' ' -f1); do
+#   xdotool windowminimize "$x" || :
+# done
 
 
 # TOP CAPTION:
 # ( sh/01/time || : ) &
 
-( sh/01/wallpaper || : ) &
-
-# Order Here sign:
-# ( sh/01/order_here || : ) &
-
-while sh/is.running ; do
-  sh/sleep.minute
-done
-
-echo "=== Done main: $$"
+ruby src/01/display.rb || :
 
