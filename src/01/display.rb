@@ -182,9 +182,11 @@ hide_mouse_cursor
 
 while true
   if reboot_time?
-    sleep 60
-    `git pull`
-    `sudo reboot`
+    fork {
+      sleep 60
+      `git pull`
+      `sudo reboot`
+    }
   end
 
   if on_5th_minute?
@@ -192,7 +194,7 @@ while true
   end
 
   if on_15th_minute?
-    `git pull`
+    fork { `git pull` }
   end
 
   Alegria.update_bg
