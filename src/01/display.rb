@@ -94,16 +94,17 @@ class Alegria
     hour12 = now.strftime("%-I").to_i
 
     return false if hour24 < 11
+    return true if hour24 >= 11 && hour24 <= 13
 
     case
     when "Mon"
-      hour24 - 12 >= 3
+      hour12 >= 3
     when "Tue", "Wed", "Thu"
-      hour24 - 12 >= 8
+      hour12 >= 8
     when "Fri", "Sat"
-      hour24 - 12 >= 9
+      hour12 >= 9
     when "Sun"
-      hour24 - 12 >= 4
+      hour12 >= 4
     else
       false
     end # case
@@ -169,10 +170,15 @@ class Alegria
 
 end # module
 
+def hide_mouse_cursor
+  `xdotool mousemove 1080 1980`
+end
+
 
 `wmctrl -l`.strip.split("\n").each { |x|
   `xdotool windowminimize "#{x.split.first}"`
 }
+hide_mouse_cursor
 
 while true
   if reboot_time?
@@ -182,7 +188,7 @@ while true
   end
 
   if on_5th_minute?
-    `xdotool mousemove 1080 1980`
+    hide_mouse_cursor
   end
 
   if on_15th_minute?
