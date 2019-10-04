@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=sxhkd for slideshow control
+Comment=Alegria Wall Display SXHKD
+Exec=sxhkd -c /home/pi/apps/alegria/keys.sxhkdrc
+NotShowIn=GNOME;KDE;XFCE;

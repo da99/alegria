@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=main display autostart
+Comment=Alegria Wall Display
+Exec=lxterminal -e "/home/pi/apps/alegria/sh/01/run"
+NotShowIn=GNOME;KDE;XFCE;
