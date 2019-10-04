@@ -51,11 +51,20 @@ def sleep_to_hour
   sleep(secs_left + (60 * mins_left))
 end #def
 
-def sleep_to_min
+def sleep_to_min(count = 1)
   now = Time.new
-  sec = now.strftime("%-S")
+  min = now.strftime("%-M").to_i
+  sec = now.strftime("%-S").to_i
+
   secs_left = (60 - sec) + 1
+
   sleep(secs_left)
+
+  if min < 55
+    count = 1
+  end
+  mins_left = 60 * (count - 1)
+  sleep( 60 * mins_left) if mins_left > 0
 end # def
 
 def sleep_to_30
@@ -228,12 +237,16 @@ while true
       Alegria.pcmanfm_wallpaper("order_here.strogan.jpg")
     when Alegria.current_photo?("kids.special.01.jpg")
       Alegria.pcmanfm_wallpaper("01.coxa.combo.stro.jpg")
+      sleep_to_min(3)
+      next
     else
       Alegria.pcmanfm_wallpaper("kids.special.01.jpg")
       sleep 15
       next
     end
     sleep_to_min
+  else
+    Alegria.pcmanfm_wallpaper("mark_11_24.jpg")
   end
 end # while
 
