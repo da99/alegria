@@ -77,6 +77,19 @@ def sleep_to_30
   end
 end # def
 
+def prev_item(current, list)
+  new_item = nil
+  list.find { |x|
+    if x == current
+      true
+    else
+      new_item = x
+      false
+    end
+  }
+  new_item || list.last
+end # def
+
 def next_item(current, list)
   new_item = nil
   list.reverse.find { |x|
@@ -92,8 +105,8 @@ end # def
 
 class Alegria
   PHOTOS = "
-    kids.special.01.jpg
     01.coxa.combo.stro.jpg
+    kids.special.01.jpg
   ".split
 
   MANUAL_SLIDESHOW = "
@@ -145,23 +158,25 @@ class Alegria
     return false if hour24 < 11
     return true if hour24 >= 11 && hour24 <= 13
 
-    case
+    case day
     when "Mon"
-      hour12 >= 3
+      hour12 <= 3
     when "Tue", "Wed", "Thu"
-      hour12 >= 8
+      hour12 <= 8
     when "Fri", "Sat"
-      hour12 >= 9
+      hour12 <= 9
     when "Sun"
-      hour12 >= 4
+      hour12 <= 4
     else
       false
     end # case
 
   end # def
 
+  @@current_photo = nil
+
   def self.current_photo
-    @@current_photo ||= false
+    @@current_photo
   end # def
 
   def self.current_photo?(x)
@@ -216,9 +231,9 @@ class Alegria
 
 end # module
 
-Signal.trap('SIGUSR1') { Alegria.back }
-Signal.trap('SIGUSR2') { Alegria.forward }
-Signal.trap('SIGWINCH') { Alegria.start_slideshow }
+# Signal.trap('SIGUSR1') { Alegria.back }
+# Signal.trap('SIGUSR2') { Alegria.forward }
+# Signal.trap('SIGWINCH') { Alegria.start_slideshow }
 
 def hide_mouse_cursor
   `xdotool mousemove 1080 1980`
@@ -269,6 +284,8 @@ fork {
 
 
 while true
+  puts Time.now.to_s
+  puts Alegria.open?.inspect
   if !Alegria.slideshow?
     sleep 1
     next
