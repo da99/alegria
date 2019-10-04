@@ -96,6 +96,42 @@ class Alegria
     01.coxa.combo.stro.jpg
   ".split
 
+  MANUAL_SLIDESHOW = "
+    kids.special.01.jpg
+    01.coxa.combo.stro.jpg
+    order_here.combo.jpg
+    order_here.coxa.jpg
+    order_here.strogan.jpg
+  "
+
+  def self.stop_slideshow
+    @@slideshow = false
+  end # def
+
+  def self.start_slideshow
+    @@slideshow = true
+  end # def
+
+  start_slideshow
+
+  def self.back
+    stop_slideshow
+    pcmanfm_wallpaper(prev_item(current_photo, MANUAL_SLIDESHOW))
+  end # def
+
+  def self.forward
+    stop_slideshow
+    pcmanfm_wallpaper(next_item(current_photo, MANUAL_SLIDESHOW))
+  end # def
+
+  def self.slideshow?
+    @@slideshow
+  end
+
+  def self.state
+    [:@@slideshow, slideshow?]
+  end
+
   def self.closed?
     !open?
   end # def
@@ -180,6 +216,10 @@ class Alegria
 
 end # module
 
+Signal.trap('SIGUSR1') { Alegria.back }
+Signal.trap('SIGUSR2') { Alegria.forward }
+Signal.trap('SIGWINCH') { Alegria.start_slideshow }
+
 def hide_mouse_cursor
   `xdotool mousemove 1080 1980`
 end
@@ -229,6 +269,11 @@ fork {
 
 
 while true
+  if !Alegria.slideshow?
+    sleep 1
+    next
+  end
+
   if Alegria.open?
     case
     when Alegria.kids_special?
@@ -245,9 +290,10 @@ while true
       next
     end
     sleep_to_min
-  else
-    Alegria.pcmanfm_wallpaper("mark_11_24.jpg")
-  end
+    next
+  end # if Alegria.open?
+
+  Alegria.pcmanfm_wallpaper("mark_11_24.jpg")
 end # while
 
 

@@ -1,0 +1,14 @@
+
+
+
+button2
+  pkill -SIGWINCH -f 'ruby .+display.rb'
+
+# top button
+button9
+  pkill -SIGUSR2 -f 'ruby .+display.rb'
+
+# bottom button
+button8
+  pkill -SIGUSR1 -f 'ruby .+display.rb'
+
