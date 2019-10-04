@@ -1,5 +1,13 @@
 
 
+def process?(x)
+  begin
+    Process.getpgid( x )
+    true
+  rescue Errno::ESRCH
+    false
+  end
+end # def
 
 def on_minute?
   now = Time.new
@@ -111,6 +119,10 @@ class Alegria
     @@current_photo ||= false
   end # def
 
+  def self.current_photo?(x)
+    @@current_photo == x
+  end # def
+
   def self.kids_special?
     now    = Time.new
     day    = now.strftime("%a")
@@ -143,9 +155,9 @@ class Alegria
     end
   end # def
 
-  def self.update_bg
+
+  def self.pcmanfm_wallpaper(new_photo)
     old_photo = current_photo
-    new_photo = next_photo
     if old_photo != new_photo
       full_path = "#{Dir.pwd}/images/final/01/#{new_photo}"
       STDERR.puts "=== Updating background to: #{full_path}"
@@ -164,30 +176,65 @@ def hide_mouse_cursor
 end
 
 
-`wmctrl -l`.strip.split("\n").each { |x|
-  `xdotool windowminimize "#{x.split.first}"`
-}
+`wmctrl -l`.strip.split("\n").each { |x| `xdotool windowminimize "#{x.split.first}"` }
+
 hide_mouse_cursor
+pid = Process.pid
+fork {
+
+  puts "=== Starting forked process: #{Process.pid}"
+  while process?(pid)
+    if reboot_time?
+      fork {
+        sleep 60
+        `git pull`
+        `sudo reboot`
+      }
+    end
+    sleep_to_min
+  end
+  puts "=== Done forked process: #{Process.pid}"
+}
+
+fork {
+  puts "=== Starting forked process: #{Process.pid}"
+  while process?(pid)
+    if on_15th_minute?
+      fork { `git pull` }
+    end
+    sleep_to_min
+  end
+  puts "=== Done forked process: #{Process.pid}"
+}
+
+fork {
+  puts "=== Starting forked process: #{Process.pid}"
+  while process?(pid)
+    if on_5th_minute?
+      hide_mouse_cursor
+    end
+    sleep_to_min
+  end
+  puts "=== Done forked process: #{Process.pid}"
+}
+
 
 while true
-  if reboot_time?
-    fork {
-      sleep 60
-      `git pull`
-      `sudo reboot`
-    }
+  if Alegria.open?
+    case
+    when Alegria.kids_special?
+      Alegria.pcmanfm_wallpaper("kids.special.01.jpg")
+    when Alegria.stroganoff_special?
+      Alegria.pcmanfm_wallpaper("order_here.strogan.jpg")
+    when Alegria.current_photo?("kids.special.01.jpg")
+      Alegria.pcmanfm_wallpaper("01.coxa.combo.stro.jpg")
+    else
+      Alegria.pcmanfm_wallpaper("kids.special.01.jpg")
+      sleep 15
+      next
+    end
+    sleep_to_min
   end
-
-  if on_5th_minute?
-    hide_mouse_cursor
-  end
-
-  if on_15th_minute?
-    fork { `git pull` }
-  end
-
-  Alegria.update_bg
-  sleep_to_min
 end # while
 
 
