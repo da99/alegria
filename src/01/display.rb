@@ -76,12 +76,8 @@ end # def
 class Alegria
   PHOTOS = "
     kids.special.01.jpg
-    order_here.combo.jpg
-    order_here.coxa.jpg
-    order_here.strogan.jpg
+    01.coxa.combo.stro.jpg
   ".split
-
-  CURRENT_PHOTO = PHOTOS.first
 
   def self.closed?
     !open?
@@ -90,7 +86,7 @@ class Alegria
   def self.open?
     now    = Time.new
     day    = now.strftime("%a")
-    hour24   = now.strftime("%-H").to_i
+    hour24 = now.strftime("%-H").to_i
     hour12 = now.strftime("%-I").to_i
 
     return false if hour24 < 11
@@ -198,7 +194,7 @@ while true
   end
 
   Alegria.update_bg
-  sleep_to_30
+  sleep_to_min
 end # while
 
 
