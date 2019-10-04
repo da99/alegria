@@ -102,7 +102,7 @@ class Alegria
     order_here.combo.jpg
     order_here.coxa.jpg
     order_here.strogan.jpg
-  "
+  ".split
 
   def self.stop_slideshow
     @@slideshow = false
