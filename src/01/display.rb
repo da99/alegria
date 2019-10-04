@@ -113,11 +113,9 @@ class Alegria
 
   def self.kids_special?
     now    = Time.new
-    min    = now.strftime("%-M").to_i
-    sec    = now.strftime("%-S").to_i
     day    = now.strftime("%a")
-    hour24 = now.strftime("%-H").to_i
     hour12 = now.strftime("%-I").to_i
+
     open? && (day == "Tue" || day == "Wed") && hour12 >= 4
   end # def
 
@@ -126,12 +124,7 @@ class Alegria
   end # def
 
   def self.stroganoff_special?
-    now    = Time.new
-    min    = now.strftime("%-M").to_i
-    sec    = now.strftime("%-S").to_i
-    day    = now.strftime("%a")
-    hour24 = now.strftime("%-H").to_i
-    hour12 = now.strftime("%-I").to_i
+    day    = Time.new.strftime("%a")
     open? && (day == "Mon" || day == "Tue")
   end # def
 
