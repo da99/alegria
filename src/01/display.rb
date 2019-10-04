@@ -297,14 +297,15 @@ while true
       Alegria.pcmanfm_wallpaper("kids.special.01.jpg")
     when Alegria.stroganoff_special?
       Alegria.pcmanfm_wallpaper("order_here.strogan.jpg")
-    when Alegria.current_photo?("kids.special.01.jpg")
-      Alegria.pcmanfm_wallpaper("01.coxa.combo.stro.jpg")
-      sleep_to_min(3)
-      next
+#    when Alegria.current_photo?("kids.special.01.jpg")
+#      Alegria.pcmanfm_wallpaper("01.coxa.combo.stro.jpg")
+ #     sleep_to_min(3)
+  #    next
     else
-      Alegria.pcmanfm_wallpaper("kids.special.01.jpg")
-      sleep 15
-      next
+  #    Alegria.pcmanfm_wallpaper("kids.special.01.jpg")
+ #     sleep 15
+#      next
+      Alegria.pcmanfm_wallpaper("01.coxa.combo.stro.jpg")
     end
     sleep_to_min
     next
