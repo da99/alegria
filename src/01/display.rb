@@ -160,13 +160,13 @@ class Alegria
 
     case day
     when "Mon"
-      hour12 <= 3
+      hour12 < 3
     when "Tue", "Wed", "Thu"
-      hour12 <= 8
+      hour12 < 8
     when "Fri", "Sat"
-      hour12 <= 9
+      hour12 < 9
     when "Sun"
-      hour12 <= 4
+      hour12 < 4
     else
       false
     end # case
