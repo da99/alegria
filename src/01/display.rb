@@ -206,7 +206,7 @@ class Alegria
       "kids.special.01.jpg"
 
     when stroganoff_special?
-      "order_here.strogan.jpg"
+      "01.stro.special.jpg"
 
     when open?
       next_item(current_photo, PHOTOS)
@@ -284,8 +284,7 @@ fork {
 
 
 while true
-  puts Time.now.to_s
-  puts Alegria.open?.inspect
+
   if !Alegria.slideshow?
     sleep 1
     next
@@ -293,25 +292,23 @@ while true
 
   if Alegria.open?
     case
+
     when Alegria.kids_special?
       Alegria.pcmanfm_wallpaper("kids.special.01.jpg")
+
     when Alegria.stroganoff_special?
-      Alegria.pcmanfm_wallpaper("order_here.strogan.jpg")
-#    when Alegria.current_photo?("kids.special.01.jpg")
-#      Alegria.pcmanfm_wallpaper("01.coxa.combo.stro.jpg")
- #     sleep_to_min(3)
-  #    next
+      Alegria.pcmanfm_wallpaper("01.stro.special.jpg")
+
     else
-  #    Alegria.pcmanfm_wallpaper("kids.special.01.jpg")
- #     sleep 15
-#      next
       Alegria.pcmanfm_wallpaper("01.coxa.combo.stro.jpg")
-    end
+
+    end # case
+
     sleep_to_min
     next
   end # if Alegria.open?
 
-  Alegria.pcmanfm_wallpaper("mark_11_24.jpg")
+  Alegria.pcmanfm_wallpaper("01_joshua_1_9.jpg")
 end # while
 
 
