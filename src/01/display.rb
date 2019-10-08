@@ -183,6 +183,22 @@ class Alegria
     @@current_photo == x
   end # def
 
+  def self.tues_after4pm?
+    now    = Time.new
+    day    = now.strftime("%a")
+    hour12 = now.strftime("%-I").to_i
+
+    open? && day == "Tue" && hour12 >= 4
+  end # def
+
+  def self.wed_after4pm?
+    now    = Time.new
+    day    = now.strftime("%a")
+    hour12 = now.strftime("%-I").to_i
+
+    open? && day == "Wed" && hour12 >= 4
+  end # def
+
   def self.kids_special?
     now    = Time.new
     day    = now.strftime("%a")
@@ -293,14 +309,17 @@ while true
   if Alegria.open?
     case
 
-    when Alegria.kids_special?
-      Alegria.pcmanfm_wallpaper("kids.special.01.jpg")
+    when Alegria.tues_after4pm?
+      Alegria.pcmanfm_wallpaper("01.tues.after4.jpg")
+
+    when Alegria.wed_after4pm?
+      Alegria.pcmanfm_wallpaper("01.wed.after4.jpg")
 
     when Alegria.stroganoff_special?
       Alegria.pcmanfm_wallpaper("01.stro.special.jpg")
 
     else
-      Alegria.pcmanfm_wallpaper("01.coxa.combo.stro.jpg")
+      Alegria.pcmanfm_wallpaper("01.normal.jpg")
 
     end # case
 
