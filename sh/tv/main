@@ -48,22 +48,12 @@ done
 while sh/is.running ; do
 
   if sh/is.open ; then
-    for x in $(find images/final/tv/ -type f -iname "*gril*.jpg" ) ; do
-      if sh/is.open ; then
-        case  "$x" in
-           *gril*)
-        pcmanfm --seyyt-wallpaper "$PWD/$x" --wallpaper-mode=crop || :
-        sleep 60
-		   ;;
-	   *child*)
-        pcmanfm --seyyt-wallpaper "$PWD/$x" --wallpaper-mode=crop || :
-	sleep 15
-		   ;;
-	   *)
-		   sleep 15
-		   ;;
-	esac
+    for x in $(find images/final/tv/ -type f -iname "*.jpg" ) ; do
+      if sh/is.closed ; then
+        continue
       fi
+      pcmanfm --set-wallpaper "$PWD/$x" --wallpaper-mode=crop || :
+      sh/sleep.minute
     done
   else
     pcmanfm --set-wallpaper "$PWD/wall_display/special/mark_11.24.jpg" --wallpaper-mode=crop || :
