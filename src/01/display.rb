@@ -301,11 +301,6 @@ fork {
 
 while true
 
-  if !Alegria.slideshow?
-    sleep 1
-    next
-  end
-
   if Alegria.open?
     case
 
