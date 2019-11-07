@@ -1,64 +1,14 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env sh
 #
 #
-set -u -e -o pipefail
-
-blue="#132492"
-white="#ffffff"
-
-if ! test "$USER" = "pi" ; then
-  set -x
-fi
+set -u -e
 
 cd $HOME/apps/alegria
-mkdir -p tmp
 
-killall lemonbar || :
-killall mpv || :
-killall smplayer || :
-killall vlc || :
+echo -n "Wall display is starting. Downloading updates..."
+git pull || :
 
-# Minimize any windows.
-for x in $(wmctrl -l | cut -d' ' -f1); do
-  xdotool windowminimize "$x" || :
-done
+export WALL_PID="$$"
+sh/tv/_run
 
-
-# Auto-update:
-( sh/auto_update.sh || : ) &
-( sh/auto_reboot.sh || : ) &
-
-# Get the mouse out of the way:
-( sh/tv/mouse.move || : ) &
-
-# Movies:
-# ( sh/tv/movies || : ) &
-
-
-# TOP CAPTION:
-# ( sh/tv/top.caption || : ) &
-
-# Middle Caption:
-# ( sh/tv/middle.caption || : ) &
-
-# BOTTOM CAPTION:
-( sh/tv/time || : ) &
-
-# Photo Loop:
-while sh/is.running ; do
-
-  if sh/is.open ; then
-    for x in $(find images/final/tv/ -type f -iname "*.jpg" ) ; do
-      if sh/is.closed ; then
-        continue
-      fi
-      pcmanfm --set-wallpaper "$PWD/$x" --wallpaper-mode=crop || :
-      sh/sleep.minute
-    done
-  else
-    pcmanfm --set-wallpaper "$PWD/wall_display/special/mark_11.24.jpg" --wallpaper-mode=crop || :
-    sh/sleep.hour
-  fi
-
-done # while
 
