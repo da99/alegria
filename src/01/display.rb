@@ -159,16 +159,12 @@ class Alegria
     return true if hour24 >= 11 && hour24 <= 13
 
     case day
-    when "Mon"
-      hour12 < 3
-    when "Tue", "Wed", "Thu"
-      hour12 < 8
     when "Fri", "Sat"
       hour12 < 9
     when "Sun"
       hour12 < 4
     else
-      false
+      hour12 < 3
     end # case
 
   end # def

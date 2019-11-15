@@ -9,13 +9,10 @@ case $day_name in
   Sun)
     echo 4
     ;;
-  Mon)
-    echo 3
-    ;;
   Fri|Sat)
     echo 9
     ;;
   *)
-    echo 8
+    echo 3
     ;;
 esac
