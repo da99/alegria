@@ -209,7 +209,7 @@ class Alegria
 
   def self.stroganoff_special?
     day    = Time.new.strftime("%a")
-    open? && (day == "Mon" || day == "Tue")
+    open? && (day == "Mon")
   end # def
 
   def self.next_photo
@@ -299,12 +299,6 @@ while true
 
   if Alegria.open?
     case
-
-    when Alegria.tues_after4pm?
-      Alegria.pcmanfm_wallpaper("01.tues.after4.jpg")
-
-    when Alegria.wed_after4pm?
-      Alegria.pcmanfm_wallpaper("01.wed.after4.jpg")
 
     when Alegria.stroganoff_special?
       Alegria.pcmanfm_wallpaper("01.stro.special.jpg")
