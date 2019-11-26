@@ -1,5 +1,4 @@
 
-
 def process?(x)
   begin
     Process.getpgid( x )
@@ -77,73 +76,7 @@ def sleep_to_30
   end
 end # def
 
-def prev_item(current, list)
-  new_item = nil
-  list.find { |x|
-    if x == current
-      true
-    else
-      new_item = x
-      false
-    end
-  }
-  new_item || list.last
-end # def
-
-def next_item(current, list)
-  new_item = nil
-  list.reverse.find { |x|
-    if x == current
-      true
-    else
-      new_item = x
-      false
-    end
-  }
-  new_item || list.first
-end # def
-
 class Alegria
-  PHOTOS = "
-    01.coxa.combo.stro.jpg
-    kids.special.01.jpg
-  ".split
-
-  MANUAL_SLIDESHOW = "
-    kids.special.01.jpg
-    01.coxa.combo.stro.jpg
-    order_here.combo.jpg
-    order_here.coxa.jpg
-    order_here.strogan.jpg
-  ".split
-
-  def self.stop_slideshow
-    @@slideshow = false
-  end # def
-
-  def self.start_slideshow
-    @@slideshow = true
-  end # def
-
-  start_slideshow
-
-  def self.back
-    stop_slideshow
-    pcmanfm_wallpaper(prev_item(current_photo, MANUAL_SLIDESHOW))
-  end # def
-
-  def self.forward
-    stop_slideshow
-    pcmanfm_wallpaper(next_item(current_photo, MANUAL_SLIDESHOW))
-  end # def
-
-  def self.slideshow?
-    @@slideshow
-  end
-
-  def self.state
-    [:@@slideshow, slideshow?]
-  end
 
   def self.closed?
     !open?
@@ -212,22 +145,6 @@ class Alegria
     open? && (day == "Mon")
   end # def
 
-  def self.next_photo
-    case
-    when kids_special?
-      "kids.special.01.jpg"
-
-    when stroganoff_special?
-      "01.stro.special.jpg"
-
-    when open?
-      next_item(current_photo, PHOTOS)
-    else
-      "mark_11_24.jpg"
-    end
-  end # def
-
-
   def self.pcmanfm_wallpaper(new_photo)
     old_photo = current_photo
     if old_photo != new_photo
@@ -250,7 +167,6 @@ end # module
 def hide_mouse_cursor
   `xdotool mousemove 1080 1980`
 end
-
 
 `wmctrl -l`.strip.split("\n").each { |x| `xdotool windowminimize "#{x.split.first}"` }
 
