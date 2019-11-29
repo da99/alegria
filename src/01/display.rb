@@ -298,21 +298,11 @@ fork {
 while true
 
   if Alegria.open?
-    # case
-
-    # when Alegria.stroganoff_special?
-      # Alegria.pcmanfm_wallpaper("01.stro.special.jpg")
-
-    # else
-      Alegria.pcmanfm_wallpaper("01.normal.png")
-
-    # end # case
-
-    sleep_to_min
-    next
+    Alegria.pcmanfm_wallpaper("01.normal.jpg")
+  else
+    Alegria.pcmanfm_wallpaper("01_joshua_1_9.jpg")
   end # if Alegria.open?
 
-  Alegria.pcmanfm_wallpaper("01_joshua_1_9.jpg")
   sleep_to_min
 end # while
 
