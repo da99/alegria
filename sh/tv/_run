@@ -34,13 +34,6 @@ done
 # Movies:
 # ( sh/tv/movies || : ) &
 
-
-# TOP CAPTION:
-# ( sh/tv/top.caption || : ) &
-
-# Middle Caption:
-# ( sh/tv/middle.caption || : ) &
-
 # BOTTOM CAPTION:
 ( sh/tv/time || : ) &
 
