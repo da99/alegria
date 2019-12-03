@@ -19,14 +19,11 @@ while sh/is.running ; do
     Sun)
       closing_hour="4"
       ;;
-    Mon)
-      closing_hour="3"
-      ;;
     Fri|Sat)
       closing_hour="9"
       ;;
     *)
-      closing_hour="8"
+      closing_hour="3"
       ;;
   esac
 
