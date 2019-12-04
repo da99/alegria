@@ -3,7 +3,7 @@
 #
 set -u -e
 
-if test $(hostname) = "v01" ; then
+if ! test $(hostname) = "pi" ; then
   set -x
 fi
 

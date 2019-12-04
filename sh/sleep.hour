@@ -3,17 +3,11 @@
 #
 set -u -e -o pipefail
 
-
 if ! test $(hostname) = "pi" ; then
   set -x
 fi
 
-secs="$(date +"%-S")"
-wait_secs=$(( 60 - $secs ))
-
 mins="$(date +"%-M")"
-wait_mins=$(( 60 - $mins - 1))
 
-total="$(( secs + ($wait_mins * 60) ))"
-
-sleep $total
+sleep "$(( 60 - $mins - 1 ))m"
+sh/sleep.minute
