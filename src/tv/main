@@ -13,7 +13,7 @@ while true
   if Alegria.open?
     Alegria.pcmanfm_wallpaper(jpg_for_min "images/tv/slideshow")
   else
-    Alegria.pcmanfm_wallpaper(jpg_for_today "images/tv/closed")
+    Alegria.pcmanfm_wallpaper(jpg_for_min "images/tv/closed")
   end # if Alegria.open?
 
   sleep_to_min
