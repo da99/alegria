@@ -11,7 +11,7 @@ auto_hide_cursor
 
 while true
   if Alegria.open?
-    Alegria.pcmanfm_wallpaper(jpg_for_today "images/tv/slideshow")
+    Alegria.pcmanfm_wallpaper(jpg_for_min "images/tv/slideshow")
   else
     Alegria.pcmanfm_wallpaper(jpg_for_today "images/tv/closed")
   end # if Alegria.open?

@@ -1,11 +1,22 @@
 
-
-def jpg_for_today(raw_dir)
+def jpg_for_now(num, raw_dir)
   dir   = File.join(Dir.pwd, raw_dir)
   jpgs  = `find "#{dir}" -maxdepth 1 -mindepth 1 -type f -iname '*.jpg' `.split
-  index = `date +"%-d"`.to_i % jpgs.size
+  index = (num % jpgs.size).to_i
 
   jpgs[index] || File.join(Dir.pwd, "images/chicken.drumstrick.01.jpg")
+end # def
+
+def jpg_for_min(raw_dir)
+  jpg_for_now(Time.now.min, raw_dir)
+end # def
+
+def jpg_for_hour(raw_dir)
+  jpg_for_now(Time.now.hour, raw_dir)
+end # def
+
+def jpg_for_today(raw_dir)
+  jpg_for_now(Time.now.day, raw_dir)
 end # def
 
 def hide_mouse_cursor
