@@ -10,3 +10,8 @@ of Katy, TX.
 INSTALL
 ========
 Install SQLite and SQLite-dev
+
+TV mpv
+=======
+mpv grill.mov --geometry="50%x35%+40+620" --no-bord
+er --mute=yes
