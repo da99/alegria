@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+include "../alegria"
+
+# Signal.trap('SIGUSR1') { Alegria.back }
+# Signal.trap('SIGUSR2') { Alegria.forward }
+# Signal.trap('SIGWINCH') { Alegria.start_slideshow }
+
+minimize_windows
+hide_mouse_cursor
+
+auto_reboot
+auto_git_pull
+auto_hide_cursor
+
+while true
+  if Alegria.open?
+    Alegria.pcmanfm_wallpaper("images/final/01/01.normal.jpg")
+  else
+    Alegria.pcmanfm_wallpaper("images/final/01/closed/cross.jpg")
+  end # if Alegria.open?
+
+  sleep_to_min
+end # while
+
+
+
+

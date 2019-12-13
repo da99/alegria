@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+#
+#
+Dir.chdir "/apps/alegria"
+`find . -type f -name '*.JPG'`.split.each { |old_name|
+  new_name = old_name.sub(/\.JPG$/, ".jpg")
+  `mv "#{old_name}" "#{new_name}"`
+  puts "#{old_name} -> #{new_name}"
+}
+STDERR.puts "DONE"

@@ -1,4 +1,12 @@
 
+def hide_mouse_cursor
+  `xdotool mousemove 1080 1980`
+end
+
+def minimize_windows
+  `wmctrl -l`.strip.split("\n").each { |x| `xdotool windowminimize "#{x.split.first}"` }
+end
+
 def process?(x)
   begin
     Process.getpgid( x )
@@ -76,6 +84,53 @@ def sleep_to_30
   end
 end # def
 
+def auto_reboot
+  pid = Process.pid
+  fork {
+
+    puts "=== Starting forked process: #{Process.pid}"
+    while process?(pid)
+      if reboot_time?
+        fork {
+          sleep 60
+          `git pull`
+          `sudo reboot`
+        }
+      end
+      sleep_to_min
+    end
+    puts "=== Done forked process: #{Process.pid}"
+  }
+end # def auto_reboot
+
+def auto_git_pull
+  pid = Process.pid
+  fork {
+    puts "=== Starting forked process: #{Process.pid}"
+    while process?(pid)
+      if on_15th_minute?
+        fork { `git pull` }
+      end
+      sleep_to_min
+    end
+    puts "=== Done forked process: #{Process.pid}"
+  }
+end # def auto_git_pull
+
+def auto_hide_cursor
+  pid = Process.pid
+  fork {
+    puts "=== Starting forked process: #{Process.pid}"
+    while process?(pid)
+      if on_5th_minute?
+        hide_mouse_cursor
+      end
+      sleep_to_min
+    end
+    puts "=== Done forked process: #{Process.pid}"
+  }
+end # def auto_hide_cursor
+
 class Alegria
 
   def self.closed?
@@ -148,7 +203,7 @@ class Alegria
   def self.pcmanfm_wallpaper(new_photo)
     old_photo = current_photo
     if old_photo != new_photo
-      full_path = "#{Dir.pwd}/images/final/01/#{new_photo}"
+      full_path = "#{Dir.pwd}/#{new_photo}"
       STDERR.puts "=== Updating background to: #{full_path}"
       `pcmanfm --set-wallpaper "#{full_path}" --wallpaper-mode=fit`
       @@current_photo = new_photo
@@ -159,69 +214,3 @@ class Alegria
   end # def
 
 end # module
-
-# Signal.trap('SIGUSR1') { Alegria.back }
-# Signal.trap('SIGUSR2') { Alegria.forward }
-# Signal.trap('SIGWINCH') { Alegria.start_slideshow }
-
-def hide_mouse_cursor
-  `xdotool mousemove 1080 1980`
-end
-
-`wmctrl -l`.strip.split("\n").each { |x| `xdotool windowminimize "#{x.split.first}"` }
-
-hide_mouse_cursor
-pid = Process.pid
-fork {
-
-  puts "=== Starting forked process: #{Process.pid}"
-  while process?(pid)
-    if reboot_time?
-      fork {
-        sleep 60
-        `git pull`
-        `sudo reboot`
-      }
-    end
-    sleep_to_min
-  end
-  puts "=== Done forked process: #{Process.pid}"
-}
-
-fork {
-  puts "=== Starting forked process: #{Process.pid}"
-  while process?(pid)
-    if on_15th_minute?
-      fork { `git pull` }
-    end
-    sleep_to_min
-  end
-  puts "=== Done forked process: #{Process.pid}"
-}
-
-fork {
-  puts "=== Starting forked process: #{Process.pid}"
-  while process?(pid)
-    if on_5th_minute?
-      hide_mouse_cursor
-    end
-    sleep_to_min
-  end
-  puts "=== Done forked process: #{Process.pid}"
-}
-
-
-while true
-
-  if Alegria.open?
-    Alegria.pcmanfm_wallpaper("01.normal.jpg")
-  else
-    Alegria.pcmanfm_wallpaper("01_joshua_1_9.jpg")
-  end # if Alegria.open?
-
-  sleep_to_min
-end # while
-
-
-
-

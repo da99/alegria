@@ -1,0 +1,32 @@
+#!/usr/bin/env zsh
+#
+#
+set -u -e -o pipefail
+
+
+if ! test "$USER" = "pi" ; then
+  set -x
+fi
+
+cd $HOME/apps/alegria
+mkdir -p tmp
+
+killall lemonbar || :
+killall mpv || :
+killall smplayer || :
+killall vlc || :
+
+git pull || :
+
+case "$@" in
+  "tv")
+    exec src/tv/main
+    ;;
+  "01")
+    exec src/01/main
+    ;;
+  *)
+    echo "!!! Invalid option: $@" >&2
+    exit 2
+    ;;
+esac
