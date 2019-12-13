@@ -1,4 +1,13 @@
 
+
+def jpg_for_today(raw_dir)
+  dir   = File.join(Dir.pwd, raw_dir)
+  jpgs  = `find "#{dir}" -maxdepth 1 -mindepth 1 -type f -iname '*.jpg' `.split
+  index = `date +"%-d"`.to_i % jpgs.size
+
+  jpgs[index] || File.join(Dir.pwd, "images/chicken.drumstrick.01.jpg")
+end # def
+
 def hide_mouse_cursor
   `xdotool mousemove 1080 1980`
 end
@@ -200,13 +209,18 @@ class Alegria
     open? && (day == "Mon")
   end # def
 
-  def self.pcmanfm_wallpaper(new_photo)
+  def self.pcmanfm_wallpaper(raw_photo)
+    new_photo = File.expand_path(raw_photo)
+    if !(new_photo.index(Dir.pwd) == 0)
+      raise "invalid image path: #{new_photo.inspect}"
+    end
+
+    full_path = new_photo
     old_photo = current_photo
     if old_photo != new_photo
-      full_path = "#{Dir.pwd}/#{new_photo}"
       STDERR.puts "=== Updating background to: #{full_path}"
       `pcmanfm --set-wallpaper "#{full_path}" --wallpaper-mode=fit`
-      @@current_photo = new_photo
+      @@current_photo = full_path
       true
     else
       false

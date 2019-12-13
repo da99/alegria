@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+#
+#
+
+set -u -e -o pipefail
+cd "/apps/alegria"
+for x in $(find . -type f -path './src/*' -name '*.rb'; rg "env ruby" -l); do
+  if test "$(realpath $0)" = "$(realpath $x)"; then
+    continue
+  fi
+  echo -n "$x: "
+  ruby -c $x
+done

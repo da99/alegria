@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+#
+#
+set -u -e -o pipefail -x
+
+cd "/apps/alegria"
+
+sh/ruby_check
+sh/jpg_rename
+
+
