@@ -230,7 +230,7 @@ class Alegria
     old_photo = current_photo
     if old_photo != new_photo
       STDERR.puts "=== Updating background to: #{full_path}"
-      `pcmanfm --set-wallpaper "#{full_path}" --wallpaper-mode=fit`
+      `pcmanfm --set-wallpaper "#{full_path}" --wallpaper-mode=crop`
       @@current_photo = full_path
       true
     else
