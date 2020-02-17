@@ -1,7 +1,7 @@
 
 def jpg_for_now(num, raw_dir)
   dir   = File.join(Dir.pwd, raw_dir)
-  jpgs  = `find "#{dir}" -maxdepth 1 -mindepth 1 -type f -iname '*.jpg' `.split
+  jpgs  = `find "#{dir}" -maxdepth 1 -mindepth 1 -type f -iname '*.jpg' -or -iname '*.png' `.split
   index = (num % jpgs.size).to_i
 
   jpgs[index] || File.join(Dir.pwd, "images/chicken.drumstrick.01.jpg")
