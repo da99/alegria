@@ -76,7 +76,7 @@ def sleep_to_hour
   secs_left = (60 - sec) + 1
   mins_left  = 60 - min
   sleep(secs_left + (60 * mins_left))
-end #def
+end # def
 
 def sleep_to_min(count = 1)
   now = Time.new
@@ -153,6 +153,15 @@ end # def auto_hide_cursor
 
 class Alegria
 
+  def before_hour?(hour)
+    return false if hour12 == (hour - 1) && Time.now.min == 59
+    hour12 < hour
+  end
+
+  def hour12
+    Time.new.strftime("%-I").to_i
+  end
+
   def self.closed?
     !open?
   end # def
@@ -168,11 +177,11 @@ class Alegria
 
     case day
     when "Fri", "Sat"
-      hour12 < 9
+      before_hour? 9
     when "Sun"
-      hour12 < 4
+      before_hour? 4
     else
-      hour12 < 3
+      before_hour? 3
     end # case
 
   end # def
