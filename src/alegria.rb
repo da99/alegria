@@ -153,12 +153,12 @@ end # def auto_hide_cursor
 
 class Alegria
 
-  def before_hour?(hour)
-    return false if hour12 == (hour - 1) && Time.now.min == 59
+  def self.before_hour?(hour)
+    return false if Time.now.min == 59 && hour12 == (hour - 1)
     hour12 < hour
   end
 
-  def hour12
+  def self.hour12
     Time.new.strftime("%-I").to_i
   end
 
