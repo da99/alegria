@@ -25,6 +25,9 @@ case "$@" in
   "01")
     exec src/01/main
     ;;
+  "menu")
+    exec src/menu/main
+    ;;
   *)
     echo "!!! Invalid option: $@" >&2
     exit 2

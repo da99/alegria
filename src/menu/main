@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require "./src/alegria"
+
+minimize_windows
+hide_mouse_cursor
+
+auto_reboot
+auto_git_pull
+auto_hide_cursor
+
+while true
+  if Alegria.open?
+    Alegria.pcmanfm_wallpaper("images/menu/menu_01.png")
+  end # if Alegria.open?
+
+  sleep_to_hour
+end # while
