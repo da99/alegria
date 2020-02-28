@@ -13,9 +13,14 @@ auto_reboot
 auto_git_pull
 auto_hide_cursor
 
+day = Time.new.strftime("%a")
 while true
   if Alegria.open?
-    Alegria.pcmanfm_wallpaper(jpg_for_today "images/01/bible_slideshow")
+    if day == "Fri" || day == "Sat"
+      Alegria.pcmanfm_wallpaper(jpg_for_today "images/01/slideshow")
+    else
+      Alegria.pcmanfm_wallpaper(jpg_for_today "images/01/bible_slideshow")
+    end
   else
     Alegria.pcmanfm_wallpaper(jpg_for_min "images/01/closed")
   end # if Alegria.open?
