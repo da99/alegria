@@ -107,15 +107,11 @@ end # def
 def auto_reboot
   pid = Process.pid
   fork {
-
     puts "=== Starting forked process: #{Process.pid}"
     while process?(pid)
-      if reboot_time?
-        fork {
-          sleep 60
-          `git pull`
-          `sudo reboot`
-        }
+      if Auto_Reboot.yes?
+        sleep 60
+        Auto_Reboot.now!
       end
       sleep_to_min
     end
@@ -246,5 +242,33 @@ class Alegria
       false
     end
   end # def
+
+  class Auto_Reboot
+    @@last_msg = ""
+    CACHE_FILE = "reboot.request.txt"
+    class << self
+
+      def now!
+        @@last_msg = latest
+        `git pull`
+        `sudo reboot`
+      end # def now!
+
+      def latest
+        File.read(CACHE_FILE)
+      end
+
+      def yes?
+        @@last_msg == latest || reboot_time?
+      end
+
+      def reboot_time?
+        now = Time.new
+        min = now.strftime("%-M").to_i
+        hour24   = now.strftime("%-H").to_i
+        hour24 == 10 && min == 5
+      end # def
+    end # class
+  end # class Auto_Reboot
 
 end # module
