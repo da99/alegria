@@ -14,6 +14,7 @@ auto_git_pull
 auto_hide_cursor
 
 day = Time.new.strftime("%a")
+
 while true
   if Alegria.open?
     if day == "Fri" || day == "Sat"

@@ -109,9 +109,9 @@ def auto_reboot
   fork {
     puts "=== Starting forked process: #{Process.pid}"
     while process?(pid)
-      if Auto_Reboot.yes?
+      if Alegria::Auto_Reboot.yes?
         sleep 60
-        Auto_Reboot.now!
+        Alegria::Auto_Reboot.now!
       end
       sleep_to_min
     end
