@@ -17,7 +17,7 @@ day = Time.new.strftime("%a")
 
 while true
   if Alegria.open?
-    if day == "Fri" || day == "Sat"
+    if day == "Sat" # ||  day == "Fri"
       Alegria.pcmanfm_wallpaper(jpg_for_today "images/01/slideshow")
     else
       Alegria.pcmanfm_wallpaper(jpg_for_today "images/01/bible_slideshow")
