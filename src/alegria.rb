@@ -171,14 +171,14 @@ class Alegria
     return false if hour24 < 11
     return true if hour24 >= 11 && hour24 <= 13
 
-    case day
-    when "Fri", "Sat"
-      before_hour? 9
-    when "Sun"
-      before_hour? 4
-    else
+    # case day
+    # when "Fri", "Sat"
+    #   before_hour? 9
+    # when "Sun"
+    #   before_hour? 4
+    # else
       before_hour? 3
-    end # case
+    # end # case
 
   end # def
 
