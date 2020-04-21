@@ -169,7 +169,7 @@ class Alegria
     hour12 = now.strftime("%-I").to_i
 
     return false if hour24 < 11
-    return true if hour24 >= 11 && hour24 <= 13
+    return true if hour24 >= 11 && hour24 < 19
 
     # case day
     # when "Fri", "Sat"
