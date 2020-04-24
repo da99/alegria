@@ -168,6 +168,7 @@ class Alegria
     hour24 = now.strftime("%-H").to_i
     hour12 = now.strftime("%-I").to_i
 
+    return true
     return false if hour24 < 11
     return true if hour24 >= 11 && hour24 < 19
 
@@ -177,7 +178,7 @@ class Alegria
     # when "Sun"
     #   before_hour? 4
     # else
-      before_hour? 3
+      # before_hour? 3
     # end # case
 
   end # def
