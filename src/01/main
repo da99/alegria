@@ -19,10 +19,10 @@ while true
   case
     when Time.new.strftime("%m-%d-%y") == "06-21-22" 
       Alegria.pcmanfm_wallpaper("images/01/wagyu_steak.jpg")
-      sleep 20h
+      sleep 24.hours
     else
       Alegria.pcmanfm_wallpaper(jpg_for_today "images/01/bible_slideshow")
-      sleep 1h
+      sleep 1.hour
   end
   # Alegria.pcmanfm_wallpaper(jpg_for_min "images/01/closed")
 
