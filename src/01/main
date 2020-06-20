@@ -16,15 +16,15 @@ auto_hide_cursor
 day = Time.new.strftime("%a")
 
 while true
-  if Alegria.open?
-    # if day == "Sat" # ||  day == "Fri"
-    #   Alegria.pcmanfm_wallpaper(jpg_for_today "images/01/slideshow")
-    # else
+  case
+    when Time.new.strftime("%m-%d-%y") == "06-21-22" 
+      Alegria.pcmanfm_wallpaper("images/01/wagyu_steak.jpg")
+      sleep 20h
+    else
       Alegria.pcmanfm_wallpaper(jpg_for_today "images/01/bible_slideshow")
-    # end
-  else
-    Alegria.pcmanfm_wallpaper(jpg_for_min "images/01/closed")
-  end # if Alegria.open?
+      sleep 1h
+  end
+  # Alegria.pcmanfm_wallpaper(jpg_for_min "images/01/closed")
 
   sleep_to_min
 end # while
