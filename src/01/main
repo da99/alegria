@@ -23,7 +23,7 @@ while true
     #   Alegria.pcmanfm_wallpaper(jpg_for_today "images/01/bible_slideshow")
     #   sleep(60 * 60 * 1) # 1 hour
   # end
-  sleep(60 * 60 * 1)
+  sleep_to_hour
   # Alegria.pcmanfm_wallpaper(jpg_for_min "images/01/closed")
 end # while
 

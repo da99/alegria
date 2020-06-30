@@ -244,6 +244,14 @@ class Alegria
     end
   end # def
 
+  def self.pcmanfm_desktop_off
+    `pcmanfm --desktop-off`
+  end
+
+  def self.feh_bg_center(*args)
+    `feh --bg-center #{ args.map { |str| File.expand_path(str).inspect }.join(" ") }`
+  end
+
   class Auto_Reboot
     @@last_msg = ""
     CACHE_FILE = "reboot.request.txt"
