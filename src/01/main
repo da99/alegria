@@ -18,7 +18,7 @@ day = Time.new.strftime("%a")
 while true
   # case Time.new.strftime("%m-%d") 
   #   when "06-21", "06-22", "06-23", "06-24", "06-25", "06-26"
-  Alegria.pcmanfm_wallpaper("images/01/wagyu_steak.jpg")
+  Alegria.pcmanfm_wallpaper("images/01/cheese_bread.png")
     # else
     #   Alegria.pcmanfm_wallpaper(jpg_for_today "images/01/bible_slideshow")
     #   sleep(60 * 60 * 1) # 1 hour
