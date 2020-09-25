@@ -163,12 +163,13 @@ class Alegria
   end # def
 
   def self.open?
+    return true
+
     now    = Time.new
     day    = now.strftime("%a")
     hour24 = now.strftime("%-H").to_i
     hour12 = now.strftime("%-I").to_i
 
-    return true
     return false if hour24 < 11
     return true if hour24 >= 11 && hour24 < 19
 
@@ -181,16 +182,6 @@ class Alegria
       # before_hour? 3
     # end # case
 
-  end # def
-
-  @@current_photo = nil
-
-  def self.current_photo
-    @@current_photo
-  end # def
-
-  def self.current_photo?(x)
-    @@current_photo == x
   end # def
 
   def self.tues_after4pm?
@@ -233,15 +224,9 @@ class Alegria
     end
 
     full_path = new_photo
-    old_photo = current_photo
-    if old_photo != new_photo
-      STDERR.puts "=== Updating background to: #{full_path}"
-      `pcmanfm --set-wallpaper "#{full_path}" --wallpaper-mode=crop`
-      @@current_photo = full_path
-      true
-    else
-      false
-    end
+    STDERR.puts "=== Updating background to: #{full_path}"
+    `pcmanfm --set-wallpaper "#{full_path}" --wallpaper-mode=crop`
+    true
   end # def
 
   def self.pcmanfm_desktop_off
