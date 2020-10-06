@@ -14,6 +14,9 @@ auto_git_pull
 auto_hide_cursor
 Alegria.pcmanfm_desktop_off
 
+update_menu
+sleep 60
+
 while true
   if on_15th_minute?
     sleep 120 # wait for git to download to files
